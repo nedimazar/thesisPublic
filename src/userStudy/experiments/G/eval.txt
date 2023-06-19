@@ -1,0 +1,5 @@
+Comments:
+- Partiipant assumed roger can see the contents of a file
+- Participant solved task A a bit by luck since they specified column names that did not exist, but GPT guessed the column index correctly.
+- Problem with deleting all files caused by GPT
+- Hint: Stopped participant from running a long command hallucinated by GPT because it seemed risky, told participant the correct/expected ssh command is much shorter and simple.

@@ -1,0 +1,3 @@
+Comments:
+- A2 Could not get the 3 highest earners from the file, participant tried to fix a complex and long command and got stuck with erroneous outputs.
+- Participant showed roger undesired output in order to get improved commands.

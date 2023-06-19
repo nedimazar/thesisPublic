@@ -1,0 +1,27 @@
+[
+  {
+    "role": "user",
+    "content": "how can I open a local server running on localhost port 2222 using ssh?"
+  },
+  { "role": "assistant", "content": "ssh -p 2222 localhost" },
+  {
+    "role": "user",
+    "content": "ow can I open a local server running on localhost port 2222 with username john using ssh?"
+  },
+  { "role": "assistant", "content": "ssh -p 2222 john@localhost" },
+  {
+    "role": "user",
+    "content": "how can I download from a local server all the files that start with letter a?"
+  },
+  { "role": "assistant", "content": "scp -P 2222 john@localhost:\"a*\" ." },
+  { "role": "user", "content": "how can I change the permission of a file?" },
+  { "role": "assistant", "content": "chmod PERMISSIONS \"file_name\"" },
+  {
+    "role": "user",
+    "content": "how can I copy a file to the localhost server?"
+  },
+  {
+    "role": "assistant",
+    "content": "scp -P 2222 \"file_name\" john@localhost:/destination/path/"
+  }
+]

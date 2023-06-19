@@ -1,0 +1,1 @@
+[{"role": "user", "content": "how can I open a local server"}, {"role": "assistant", "content": "python -m SimpleHTTPServer"}]

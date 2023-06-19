@@ -1,0 +1,1 @@
+[{"role": "user", "content": "highest value of second column in tsv"}, {"role": "assistant", "content": "awk -F'\\t' '{if($2>max) max=$2} END{print max}' file.tsv"}, {"role": "user", "content": "top 3 highest values of second column in tsv"}, {"role": "assistant", "content": "awk -F'\\t' '{print $2}' file.tsv | sort -nr | head -n 3"}]

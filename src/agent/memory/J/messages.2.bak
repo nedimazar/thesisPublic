@@ -1,0 +1,1 @@
+[{"role": "user", "content": "how can I sort based on the first column a .tsv file?"}, {"role": "assistant", "content": "sort -k1,1 input.tsv > output.tsv"}, {"role": "user", "content": "how can I check if a .tsv file is sorted?"}, {"role": "assistant", "content": "sort -c -k1,1 input.tsv"}]

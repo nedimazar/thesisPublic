@@ -1,0 +1,1 @@
+[{"role": "user", "content": "how can I open a local serverthat is running on localhost port 2222 in directory /home/john?"}, {"role": "assistant", "content": "cd \"/home/john\" && python -m SimpleHTTPServer 2222"}, {"role": "user", "content": "how cn ope a local server using ssh?"}, {"role": "assistant", "content": "ssh -L 2222:localhost:2222 username@localhost"}]

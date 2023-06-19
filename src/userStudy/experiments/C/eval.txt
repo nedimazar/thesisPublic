@@ -1,0 +1,7 @@
+Comments:
+- Participant forgot to type roeger a few times.
+- A2 Had to skip getting the three names from the files
+- B1 Had to specify to use the port
+- B2 Had the quotes problem with scp
+- B2 hint for downloading the files
+- B3 hint: permissions can be represented both as strings and integers

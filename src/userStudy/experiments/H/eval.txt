@@ -1,0 +1,4 @@
+Comments:
+- Hint: Explained output of sort command.
+- Got lucky with roger prompt "sort the name column", roger guessed correctly that the name is in column 1 and income is in column 2.
+- Hint: SCP from localhost, not from server

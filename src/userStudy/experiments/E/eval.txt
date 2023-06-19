@@ -1,0 +1,5 @@
+Comments:
+- At some point got stuck but did not try roger for a while, tried to debug command manually.
+- Hint: Every command does not have to be a one-liner.
+- Hint: I explained what the diff output means to clarify.
+- B2 SCP Quotes problem

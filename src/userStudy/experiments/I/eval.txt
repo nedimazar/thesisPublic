@@ -1,0 +1,2 @@
+Comments:
+- There was a slight language barrier (English) during prompting, however participant got very good generations from roger. What was interesting to see is that roger showcased a lot of elicitation such as asking for file namnes and usage modes for the openssl utility, elicitation was not observed with other participants up to this point.
