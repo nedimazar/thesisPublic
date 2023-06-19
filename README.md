@@ -1,5 +1,6 @@
-# roger
-### Dependencies
+## Anonymized version of the repo for my MSc thesis: "Interfacing Operating Systems with Large Language Models"
+
+## Dependencies
 1. Python: `3.11.2`
 2. `python3.11 -m venv venv`
 3. `source venv/bin/activate`
