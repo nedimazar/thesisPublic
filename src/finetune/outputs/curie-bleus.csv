@@ -1,0 +1,642 @@
+nl_prompt,expected,bleu1,bleu2,bleu3
+"Add ""prefix_"" to every non-blank line in ""a.txt""","['nl -s ""prefix_"" a.txt | cut -c7-']",0.12492148200526047,0.16464763429038118,0.18633196606662233
+"Add a number prefix followed by ')' to each line in ""$string""","['echo ""$string"" | nl -ba -s\') \'']",0.23900044076213986,0.2917329527706681,0.19801381702054077
+"Append the contents of ""file.txt"" to the current in-memory history list",['history -r file.txt'],0.3578267293617977,0.8492326635760689,0.538050876574231
+Append the current date to variable 'LBUFFER',"['LBUFFER+=""$(date)""']",0.6666467303030572,0.7816275318041329,0.3964513253420688
+"Append the date and command ran to ""/tmp/trace"" after every command","['PROMPT_COMMAND=\'echo ""$(date +""%Y/%m/%d (%H:%M)"") $(history 1 |cut -c 7-)"" >> /tmp/trace\'']",0.030875673170037532,0.274671042266268,0.14010418952436915
+"Archive ""/path/to/copy"" on host ""remote.host"" as user ""user"" to ""/path/to/local/storage"" updating files with different checksums, showing human readable progress and statistics, and compressing data during transmission",['rsync -chavzP --stats user@remote.host:/path/to/copy /path/to/local/storage'],0.7830312781877055,0.7974175070363193,0.7957280920313001
+"Archive ""/path/to/copy"" to ""/path/to/local/storage"" on host ""host.remoted.from"" as user ""user"" updating files with different checksums, showing human readable progress and statistics, and compressing data during transmission",['rsync -chavzP --stats /path/to/copy user@host.remoted.from:/path/to/local/storage'],0.734971582645932,0.7999176594453972,0.4926374439377083
+"Archive ""_vim/"" to ""~/.vim"" suppressing non-error messages and compressing data during transmission",['rsync -aqz _vim/ ~/.vim'],0.6173717114381875,0.6169034543248991,0.6651557976544797
+"Archive ""_vimrc"" to ""~/.vimrc"" suppressing non-error messages and compressing data during transmission",['rsync -aqz _vimrc ~/.vimrc'],0.23952444179768462,0.49615666340750453,0.6097136682923002
+"Archive ""directory"" preserving hard links from host ""remote"" to the current local directory and keep partial files, handle sparse files efficiently, and itemize changes made",['rsync -aPSHiv remote:directory .'],0.5852432074546792,0.0984095389634934,0.5922111127396987
+"Archive ""source"" to ""root@remote_server_name:/opt/backups"" via ssh on port 3382 and compress data during transmission","[""rsync -avz --rsh='ssh -p3382' source root@remote_server_name:/opt/backups""]",0.5151794408959023,0.7652466731209745,0.4972962969247816
+"Archive ""src"" to ""dest"" via ssh with permissions set to 755",['rsync -avz --chmod=ug=rwx --chmod=o=rx -e ssh src dest'],0.13458930142907594,0.37243404341290864,0.21960151776073705
+"Archive ""user@remoteip:/path/to/files/"" to ""/local/path"" via ssh on port ""$portNumber"" and compressing data during transmission","['rsync -avz -e ""ssh -p $portNumber"" user@remoteip:/path/to/files/ /local/path/']",0.14673279917117518,0.5397859503885458,0.7144295525802888
+"Archive all directories in /path/to/directory/* (only command line arguments, no sub-directories) to files with .tar.gz extension","['find /path/to/directory/* -maxdepth 0 -type d -printf ""%P\\n"" -exec sudo tar -zcpvf {}.tar.gz {} \\;']",0.5094796097329403,0.5803129107515451,0.6892429673267999
+archive all files in a current directory modified in the last 30 days,['tar czvf mytarfile.tgz `find . -mtime -30`'],0.37693871926036826,0.32941932990754186,0.37903615240223665
+"Archive directory specified by variable ""i"" to ""/iscsi"" preserving relative paths.",['rsync -avR $i /iscsi;'],0.34828042315919955,0.951229424500714,0.4513448669460296
+"as root, find from / all files called ""file.txt""",['sudo find / -name file.txt'],0.788127627745311,0.7300980876386182,0.7300980876386182
+Backup all of the Java files in the current directory tree by copying them and appending the suffix .bk to each,"['find . -name ""*.java"" -exec cp {} {}.bk \\;']",0.7241423666999476,0.41823369863511256,0.6414781852825581
+Calculate the md5 checksum of the current directory structure and save it in variable SUM,['SUM=$(tree | md5sum)'],0.32385792338022384,0.2682600221134365,0.2380050699329688
+"Calculate the md5 sum of ""yourstring""","['echo -n ""yourstring"" |md5sum']",0.6375755584556164,0.44027945940585717,0.6375755584556164
+"Calculate the md5 sum of all files in ""/your/dir"" including content and filenames and following symbolic links",['grep -aR -e . /your/dir | md5sum | cut -c-32'],0.40508073711036413,0.16360659985679654,0.3994436305893711
+"Calculate the md5 sum of every "".py"" file in directory tree ""/path""","['find /path -type f -name ""*.py"" -exec md5sum ""{}"" +;']",0.46226645009548945,0.6099271075007728,0.6099271075007728
+Calculate md5 sum of file $item and save it to variable 'md5',['md5=$(md5sum $item | cut -f1 -d\\ )'],0.486918896885932,0.6945551161861689,0.4157936976124742
+Calculate the sum of all the numbers from 1 to 100000,['seq 100000 | paste -sd+ | bc -l'],0.3846208555567545,0.5240290825535995,0.7746007785621336
+Change directory to the directory containing the current script,['cd $(dirname $(which $0) )'],0.33466774388661735,0.1782795591170471,0.21476074991338015
+"change the extension of all the "".lst"" files in the current folder to ""a.lst""",['find -name ‘*.lst’ -exec rename .lst a.lst {} \\;'],0.15047149445189378,0.2389848105311319,0.24350711346252712
+"Change file owner and group of ""/path/to/yourapp"" to root and print a diagnostic",['chown -v root:root /path/to/yourapp'],0.716506050505695,0.7423103725116007,0.8034328145121407
+Change file permissions on all regular files within a directory,['find /path/to/directory -type f -exec chmod 644 {} +'],0.49516426250182244,0.4578954850839661,0.620444817045212
+"change owner and group of the file ""/path/to/yourapp"" to root",['chown -v root:root /path/to/yourapp'],0.8868405031432041,0.8431339019329497,0.8431339019329497
+"Change the owner of ""/var/www/html/mysite/images/"" to ""nobody""",['sudo chown nobody /var/www/html/mysite/images/'],0.9368059007925257,1.0,1.0
+"Change the owner of all files in the directory tree ""dir_to_start"" excluding file ""file_to_exclude"" to ""owner""","['find dir_to_start -not -name ""file_to_exclude""  -print0 | xargs -0 chown owner']",0.6393381968996166,0.5641775417648462,0.6664774719645213
+"Change ownership of ""/vol"" to the current user",['sudo chown `whoami` /vol'],0.5697863655544793,0.5697863655544793,0.5701595435903216
+change the permissions of all the directories in the folder root_dir to 555,['find root_dir -type d -exec chmod 555 {} \\;'],1.0,1.0,1.0
+Change permissions to 644 for all regular files under and below /path/to/someDirectory/,['find /path/to/someDirectory -type f -print0 | xargs -0 sudo chmod 644'],0.6515885699104477,0.6282207591747897,0.6515885699104477
+change to a directory and search for a file in that directory,"[""cd /nfs//office/ && find . -name '.user.log'""]",0.3258474303417847,0.1281223900388171,0.41469233998159744
+"Change to directory 'xyz' and resolve any symlinks in the resulting path, making the physical path the current one.",['cd -P xyz'],1.4591279591169653e-78,0.19835441454182887,1.7609048334559646e-78
+Changes to the directory where 'ssh' executable is located.,['cd $(dirname $(which ssh));'],0.09244817597170958,0.8645707301556367,0.9622687143632572
+"Check all .txt files whether they contain ""needle""","['find . -type f -iname ""*.txt"" -print | xargs grep ""needle""']",0.5590168871271106,0.7217128711315647,0.5568620931144364
+"Check if ""$FILE_PATH"" exists on ""$HOST""","['ssh -q $HOST [[ -f $FILE_PATH ]] && echo ""File exists"" || echo ""File does not exist"";']",0.21405879677454911,0.167850267756816,0.19753268685436962
+"Check if the contents of file ""subset"" is a subset of file ""set""",['comm -23 <(sort subset | uniq) <(sort set | uniq) | head -1'],0.06390043540679863,0.3307482002019537,0.3233998029272001
+check the previous alias in current list,['alias | grep my_previous_alias'],0.045203824166015344,0.043494914305619775,0.3900049863363209
+"Compress ""Hello world"", base64 encode, and save to variable ""FOO""","['FOO=$(echo ""Hello world"" | gzip | base64)']",0.4120687538741461,0.16193375903680196,0.40683810125935144
+"Compress all "".txt"" files in all sub directories with gzip",['gzip */*.txt'],0.12148431820956998,0.13111138531756522,0.06290452551314009
+Compress all files with '.txt' extension under current directory,['echo *.txt | xargs gzip -9'],0.40988458894920865,0.28509173779340496,0.2645675921773855
+Concatenate files containing `test' in their names,"[""find . -name '*test*' -exec cat {} \\;""]",0.4412897857101915,0.10920968859591808,0.26422214202604993
+"Connect to host ""remotehost"" as ssh user ""user"" to copy remote file ""/location/KMST_DataFile_*.kms"" to current directory on local host.",['scp -v user@remotehost:/location/KMST_DataFile_*.kms'],0.5461973297407062,0.5674798798481823,0.6817567490888458
+"Continuously write ""Hidden"" over the entire ""/dev/sdb"" disk","['yes ""Hidden"" | dd of=/dev/sdb']",0.2954049312613968,3.7829965197917335e-155,0.3829453159673758
+"Continuously write ""UUUUUUUUUUUUUUUUU"" without newlines to ""/dev/to/overwrite""","[""yes 'UUUUUUUUUUUUUUUUU' | tr -d '\\n' > /dev/to/overwrite""]",0.6981439473597614,0.7257897709963108,0.6251263021883782
+"Copy ""/home/username/path/on/server/"" to ""username@your.ip.address.here:/Users/username/path/on/machine/"" and convert encoding from UTF-8 to UTF-8-MAC","[""rsync --iconv=UTF-8,UTF-8-MAC /home/username/path/on/server/ 'username@your.ip.address.here:/Users/username/path/on/machine/'""]",0.871332332623878,0.8497351173848986,0.8281077590668019
+Copy a file xyz.c to all directories or over all files matching the letter 'c' at the end of their names under current directory tree,"['find . -name ""*c"" -print0 | xargs -0 -n1 cp xyz.c']",0.3204547165841461,0.45534054347357905,0.27697127521051845
+"Copy a large sparse file ""sparse-1"" to ""sparse-1-copy""",['rsync --sparse sparse-1 sparse-1-copy'],0.2069371582230045,0.2317602468723414,0.2040769215977175
+"Copy all "".php"" files in ""projects/"" directory tree to ""copy/"" preserving directory hierarchy","[""find projects/ -name '*.php' -print | cpio -pdm copy/""]",0.5199460570871317,0.6883187905040715,0.484657766070873
+Copy all *.data files under /source_path to /target_path by appending the parent directory names in the source paths to the beginning of each of the target file names,"['find /source_path -name \\*.data  | while read -r filename; do cp ""${filename}"" ""$(printf ""%s\\n"" ""${filename}"" | sed ""s/^.*[/]\\(category[^/]*\\)[/]\\(.*[.]data\\)$/\\/target_path\\/\\1_\\2/"")""; done']",0.16042442314826943,0.0790685827514432,0.17990870768706216
+Copy all files/directories excluding *.flac files under current directory to /media/wd/network_sync/music directory,"['find . -type f -iname ""*.flac"" -o -print0 -iname ""*.mp3"" -print0 -o -iname ""*.wav"" -print0 -o -iname ""*.aac"" -print0 -o -iname ""*.wma"" -print0 | while read -d $\'\\0\' file; do cp -ruv ""$file"" ""/media/wd/network_sync/music/$file""; done']",0.07715692678471774,0.09497500975717747,0.16765498731598288
+"Copy all files and directories under the current directory into ""../new"" preserving relative paths",['find -print0 | sort -z | cpio -pdv0 ../new'],0.3020421809721222,0.6283971364671961,0.5663555988584539
+Copy all files in current directory that do not match */exlude-path/* in their paths to /destination/ preserving directory structure,"[""find . -type f -not -path '*/exlude-path/*' -exec cp --parents '{}' '/destination/' \\;""]",0.6260406026929385,0.6260406026929385,0.6909294777120316
+Copy all files with '.png' (case insensitive) extension under '/home/mine' directory tree to '/home/mine/pngcoppies/' directory with new names constructed by prepending 'copy' in their names,"['find  /home/mine -iname ""*.png"" -printf ""%P\\n "" | xargs  -I % -n1 cp %  /home/mine/pngcoppies/copy%']",0.39525651376790943,0.5827484138493966,0.4466305462007888
+copy all java files from current folder to another folder,"['find . -name ""*.java"" -print0 | xargs -0 -J % cp % destinationFolder']",0.2891312275791878,0.27280987620905794,0.4621599850993674
+"Copy all regular files whose names end in ""~"" from the /path directory tree to ~/backups/","[""find /path -type f -name '*~' -print0 | xargs -0 -I % cp -a % ~/backups""]",0.35929381179056535,0.5041487534440743,0.5776070219785524
+Copies file 'file.dat' to each top-level directory in the current directory.,['ls | xargs -n 1 cp -i file.dat'],0.3311960576255507,0.27515030484415853,0.3331376576791161
+Copies file 'test' to each of directories like './fs*/*'.,['echo ./fs*/* | xargs -n 1 cp test'],0.3042491754373013,0.39567167294524297,0.36154614483659264
+"Copy file in current directory of local host to host ""remote"", connecting as ssh user matching current local username, and copying the file in home directory on remote host - enable compression during transfer.",['scp -C file remote:'],0.017405451803181215,0.06980884340032019,0.17478864493679358
+"Copy file linked to by ""bar.pdf"" to ""bar.pdf""",['cp --remove-destination `readlink bar.pdf` bar.pdf'],0.055580666363881474,0.1910189918290382,0.3572661076975756
+"Copy files printed by ""any_command_what_produces_relative_path_names"" to ""/new/parent/dir"" preserving the directory hierarchy",['any_command_what_produces_relative_path_names | cpio -pamVd /new/parent/dir'],0.4941868189291692,0.8688055785918274,0.4815008492174296
+"Copy the owner and group from ""file.txt"" to ""$tempfile""","['chown --reference=file.txt -- ""$tempfile""']",0.4492969037428924,0.3469562375814524,0.30177424608498343
+"Count the *.html files residing in the /usr/src directory tree and containing string ""foo""","['find /usr/src -name ""*.html"" | xargs grep -l foo | wc -l']",0.8882678083197124,0.7919511838891381,0.6322498809151845
+count amount of jobs running,['jobs | wc -l'],0.07618469473608562,0.1353352832366127,0.7098108717509044
+Count files in the current path by modification month,"[""find . -maxdepth 1 -type f -printf '%TY-%Tm\\n' | sort | uniq -c""]",0.5749836399693187,0.5712030783387556,0.5545734810608219
+Counts lines in each *.php file sorted by file path.,"[""find . -name '*.php' -type f | sort | xargs wc -l""]",0.6284068262615224,0.6097707975105005,0.7533467625700064
+Counts lines of 'file' file.,['wc -l file'],1.0,0.4578831372133982,0.4578831372133982
+Counts lines of /dir/file.txt file.,['wc -l /dir/file.txt'],0.6748913185157768,0.6748913185157768,0.6748913185157768
+count lines of C or C++ or Obj-C code under the current directory,"['find . \\( -name ""*.c"" -or -name ""*.cpp"" -or -name ""*.h"" -or -name ""*.m"" \\) -print0 | xargs -0 wc']",0.12520777710521586,0.20381497944891389,0.17244003005851558
+count the lines of java code for all the java files in the current directory,"['find . -name ""*.java"" -print0 | xargs -0 wc']",0.3518592229289207,0.5351312434796753,0.26611419853753077
+"Count the number of differing lines in ""file1"" and ""file2""",['diff file1 file2 | grep ^[\\>\\<] | wc -l'],0.550830937814653,0.550830937814653,0.550830937814653
+Count the number of files/directories named file1 under current directory,['find -name file1 | wc -l'],0.4899095764920164,0.7308769013745805,0.6611770676038285
+Counts the number of lines in each *.java file in a git repository.,"['git ls-files | grep ""\\.java$"" | xargs wc -l']",0.456142877141656,0.248468954588662,0.6084176206970151
+"Counts the number of lines in each *.swift or *.mm file in a git repository, escaping any space in filename.","['git ls-files | sed \'s/ /\\\\ /g\' | grep -E ""\\.*(swift$|mm$)"" | xargs wc -l']",0.5710374713268096,0.39396224555954706,0.22203958075263294
+"Count the number of open files for PID ""$PYTHONPID"" every 2 seconds","['watch ""ls /proc/$PYTHONPID/fd | wc -l""']",0.4802612697566501,0.49526373258609174,0.4640143116278167
+"Create a full path symbolic link ""$newlink"" from a relative path symbolic link ""$origlink""",['ln -s $(readlink -f $origlink) $newlink'],0.46294386334453724,0.46879186990098537,0.46294386334453724
+"Create a ssh tunnel on local port 2222 through ""bridge.example.com"" to ""remote.example.com"" port 22 without executing any commands and run in the background",['ssh -N -L 2222:remote.example.com:22 bridge.example.com&'],0.2801874256718254,0.5505543636658368,0.5314224663376972
+"Create a symbolic link in the current directory to ""$file""","['ln -s ""$file""']",1.0,1.0,1.0
+"create a symbolic link named ""$ORACLE_HOME/include"" to file ""/usr/include/oracle/11.2/client""",['sudo ln -s /usr/include/oracle/11.2/client $ORACLE_HOME/include'],0.6093476042847518,0.8937417153812486,0.8683729262879204
+"Create a symbolc link named ""public_html"" to ""current/app/webroot"" under the current working directory",['ln -s `pwd`/current/app/webroot public_html'],0.7802818594780947,0.7783393021799192,0.7783393021799192
+"Create a symbolic link named ""~/bin/subl"" to ""/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl""","['ln -s ""/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl"" ~/bin/subl']",1.0,1.0,1.0
+"Create a symbolic link to file ""/usr/bin/perl"" named with escaped characters ""/usr/local/bin/perl\r\n""","[""sudo ln -s /usr/bin/perl /usr/local/bin/perl`echo -e '\\r'`""]",0.6030406794921881,0.6143567538871342,0.5951616979021712
+create a zip file of all the files in some directory,['find $directory -type -f -execdir zip -j $ZipFileName {}\\;'],0.1671608973330323,0.35403213697158437,0.3177981213002028
+"create archive ""backup.tar.gz"" from /path/to/catalog",['tar czfP backup.tar.gz /path/to/catalog'],2.3030488340944308e-79,0.88922527244883,0.6173608277795636
+Create empty file (or update timestamp to current date/time if file already exists) named with full timestamp (year/month/day/hour/minute/second).,['touch filename_`/bin/date +%Y%m%d%H%M%S`.txt'],0.12082491732707439,0.20981415542713838,0.06907183935878422
+"Create empty files (or update timestamps if they exist) with names matching each word in variable ""correctFilePathAndName""","['echo -e ""$correctFilePathAndName"" | xargs touch']",0.5423679315595095,0.4730983067009086,0.2772681025092388
+"Create hard links of all files and directories matching ""test/icecream/cupcake/*"" or ""test/mtndew/livewire/*"" in ""test-keep"" preserving directory hierarchy","[""find test -path 'test/icecream/cupcake/*' -o -path 'test/mtndew/livewire/*' | cpio -padluv test-keep""]",0.5879501486998101,0.4797683268261148,0.5809784842995502
+"Create symbolic links in the current directory for all files excluding ""CONFIGFILE"" located in ""/your/project""","['find /your/project -maxdepth 1 ! -name ""CONFIGFILE"" -exec ln -s \\{\\} ./ \\;']",0.7324809315946312,0.6067242649158456,0.6745183051503678
+"Create symbolic links in the current directory for all files excluding ""CONFIGFILE"" located under ""/your/project"" directory tree","[""find /your/project -type f ! -name 'CONFIGFILE' -exec ln -s \\{\\} ./ \\;""]",0.6346520275762871,0.7076684030377156,0.7473943096066498
+"create symbolic links in current directory to all files located in ""dir"" directory and have filename extension ""jpg""",['find dir -name \\*.jpg -print0 | xargs -0 -N1 ln -s'],0.4667125298874272,0.4864396115503982,0.4772885397976923
+Creates temporary file with name formatted like '.script.XXXXXX' in '/tmp/' folder and saves path to it in 'script2' variable.,['script2=`mktemp /tmp/.script.XXXXXX`;'],0.7128207380052638,0.7961611814453725,0.7820284998362076
+Creates temporary folder relative to directory '/path/to/dir'.,['mktemp -d -p /path/to/dir'],0.22255029954969144,0.8377853400785963,0.6813943375905714
+Delete all '-' character from $1 and save the resultant string to variable 'COLUMN',['COLUMN=`echo $1 | tr -d -`'],0.39842406650170187,0.3997821152164888,0.759907656827929
+Delete all broken symbolic links under '/usr/ports/packages' directory tree,['find -L /usr/ports/packages -type l -exec rm -- {}\t+'],0.6188397596279078,0.6188397596279078,0.7517610174856553
+Delete all directories under '.cache/chromium/Default/Cache/' directory tree that are bigger than 100MB and are at least 1 level deep,['find .cache/chromium/Default/Cache/ -mindepth 1 -type d -size +100M -exec rm -rf {} \\;'],0.8994967329719311,0.8994967329719311,0.7477385280520161
+delete all the empty in the current folder do not search in sub directories,['find . -maxdepth 1 -type d -empty -exec rm {} \\;'],0.7751096365953405,0.6696719216439666,0.6518311410813652
+delete all the files in the file system which belong to the user edwarda after user confirmation,"['find / -user edwarda -ok rm ""{}"" \\;']",0.743991720478714,0.5224773292758771,0.4508392820474959
+delete all the hidden in the folder Musica after user confirmation,"['find Música/* -type f -name "".*"" -exec /usr/bin/rm -i {} \\;']",0.5947257466241153,0.44862064205414537,0.18852846942771861
+Delete all in the current directory tree,['find . -delete'],0.23715535229161464,0.2657251941599823,0.34772504705825924
+"Delete all regular files that start with 'sess_' in their names, are at least 1 level deep and were modified more than $gc_maxlifetime minutes ago under $save_path directory tree","['find -O3 ""$save_path"" -depth -mindepth 1 -name \'sess_*\' -ignore_readdir_race -type f -cmin ""+$gc_maxlifetime"" -delete']",0.5269574144385669,0.4913634978993862,0.4844979784656341
+Delete all regular files under $DIR directory tree that have been modified before file $a,"['find ""$DIR"" -type f \\! -newer ""$a"" -exec rm {} +']",0.46026926874058377,0.6596512907223578,0.4703987072993582
+Delete files under $LOCATION that match $REQUIRED_FILES in their names and were modified more than 360 minutes ago,['find $LOCATION -name $REQUIRED_FILES -type f -mmin +360 -delete'],0.7834673875512185,0.6248608277219116,0.7073998223558849
+Disables shell option 'nullglob'.,['shopt -u nullglob'],1.0,1.0,1.0
+Display 12345 backwards,['echo 12345 | rev'],0.4743107045832293,0.8282477531331041,1.0
+dispaly a list of all the files in the file system which belong to a specific user  and exclude searching in the folder proc,['find / -path /proc -prune -o -user <account> -ls'],0.3391663032124855,0.2428295575113945,0.35077879309059323
+Display a list of files with sizes in decreasing order of size of all the regular files under $dir directory tree that are bigger than $size in size,['find $dir -type -f size +$size -print0 | xargs -0 ls -1hsS'],0.42814389898340005,0.431585197082357,0.5508058922290754
+dispaly a long listig of all the files in the home folder which are bigger than 100KB and discard any errors,['find /home -size +100000 -ls 2>/dev/null'],0.7720457098255714,0.4882388544494465,0.7720457098255714
+display a long list of all the files that are bigger than 10KB in current folder,['find . -size +10k -exec ls -l {} \\;'],1.0,0.8868405031432041,0.4918265177356718
+display a long listing of all the regular/normal files in the file system which have set uid bit or set gid bit enabled.,['find / -type f \\( -perm -4000 -o -perm -2000 \\) -exec ls -l {} \\;'],0.5414515937950329,0.40435627102747573,0.6051411200247945
+display a long listing of all the temp files whose size is 0 bytes and which have not been accessed in the last 10 days,['find /tmp -size 0 -atime +10 -exec ls -l {} \\; > /tmp/checkold.txt'],0.703589003558764,0.6558897577533809,0.6100767854617879
+"display all the "".c"" files in the current directory",['find . -name \\*.c -print'],0.44410633990831616,0.5573260228443738,0.6624801353939261
+display all the directories in the folder /path/to/dest except tmp directory,['find /path/to/dest -type d \\( ! -name tmp \\) -print'],0.7838850459769391,0.7121451985861663,0.7838850459769391
+display all executable files in the folder /home,['find /home -perm /a=x'],1.0,1.0,1.0
+"display all the files having the word ""searched phrasse"" in their name in the current folder excluding those from the paths ""/tmp/"" and ""./var/log""","['find . -type f -name ""*searched phrasse*"" ! -path ""./tmp/*"" ! -path ""./var/log/*""']",0.199290651714591,0.545944487948572,0.5695359758535558
+display all the files in the kat folder,"['find kat -printf ""%f\\n""']",0.15335496684492847,0.15335496684492847,0.15335496684492847
+display all the files  in the current folder excluding the perl files,"['find . -not -name ""*.pl""']",0.1885725566385605,0.45130065930684987,0.08666303592660433
+"display all the files in the current folder excluding search in the paths containing the folder having the word ""mmm""",['find . ! -path *mmm*'],0.60066011121956,0.284854386307551,0.37897104509804447
+display all the files in current folder which are bigger than 10KB,['find . -size +10k'],1.0,0.8077627415106434,1.0
+"display all the files in the entire file system which begin with ""apache-tomcat""","['find / -name ""apache-tomcat*""']",0.8710050512714447,0.8710050512714447,0.6616022467874063
+display all the files in the file system which belong to the group lighttpd,['find / -group lighttpd -print'],0.7274705090242837,0.7274705090242837,0.7274705090242837
+"display all the files in the folder ""/Users/Me/Desktop"" which have read permission to them",['find /Users/Me/Desktop -readable'],0.728281156510351,0.728281156510351,0.728281156510351
+"display all the files in the home folder which begin with ""arrow""","[""find ~ -name 'arrow*'""]",0.7178970818142898,0.4751132438608344,0.7178970818142898
+display all the files in the home folder which have read permission to the user,['find /home -perm /u=r'],0.816496580927726,0.4487605183448698,0.4408775025210474
+"display all the hidden files in the directory ""/dir/to/search/""","['find /dir/to/search/ -name "".*"" -print']",0.7202725217688152,0.8099529059990935,0.6336005641242
+display all the jpg files in the current folder which belong to the user nobody,['find . -name *.jpg -user nobody'],0.7571389552562844,0.7571389552562844,0.7571389552562844
+Display all lines contiaining 'funcname' in system map file matching current kernel.,['cat /boot/System.map-`uname -r` | grep funcname'],0.5759258055508479,0.59708119966135,0.5646118634803302
+"display all the log files in the folder /var/log, print0 is used to handle files with only spaces in their names or which have newlines in their names","['find /var/log -name ""*.log"" -print0']",0.612175510946667,0.8791368646817761,0.5703861713598207
+display all mp3 files in the file system which have not been accessed in the last 24 hours,['find / -name “*.mp3” -atime +01 -type f'],0.7618068813406861,0.5840051294303379,0.7362521330644501
+"display all php,xml and phtml files in current folder","[""find . -name '*.php' -o -name '*.xml' -o -name '*.phtml'""]",0.3964903060355635,0.5858133726043929,0.4342596479955608
+display all normal/regular files in current folder in sorted order,['find . -type f print0 | sort -r'],0.5950242961395869,0.8827916928185874,0.5950242961395869
+display all regular/normal files in the current folder which are accessed in the last 7*24 hours,['find . -type f -atime -7'],0.796692189389272,1.0,0.4844663175856947
+display all normal/regular files in current folder which have readable permission,['find . -type f -readable'],0.4884848026519855,0.5694299147290928,0.3700992438113707
+display all the text files from the current folder and skip searching in skipdir1 and skipdir2 folders,"['find . \\( -name skipdir1 -prune , -name skipdir2 -prune -o -name ""*.txt"" \\) -print']",0.6926416821842204,0.8646854078508353,0.41234999954111845
+display all text files in the folder /tmp/1 excluding those which do not have spaces in their names,"[""find /tmp/1 -iname '*.txt' -not -iname '[0-9A-Za-z]*.txt'""]",0.44310359257874193,0.5216258755786205,0.50991022685839
+"Displays calendar of a previous, current and next month for December of 2120 year.",['cal -3 12 2120'],0.38260294162784475,0.20146541570193946,0.10252671801727671
+display the count of number html files in the current folder,"['find . -name ""*.html"" -print | xargs -l -i wc {}']",0.4654114369105641,0.6134571149069034,0.380607393219433
+(Linux specific) Display current running kernel's compile-time config file.,['cat /boot/config-`uname -r`'],0.3402771065553681,0.17920340179139746,0.08484831806446336
+"Display file type information for all instances of ""file"" in the current PATH.",['which file | xargs file'],0.18773749983024718,0.25352332492623486,0.2717221660870567
+Display human-readable file type description of ascii.txt,['file ascii.txt'],1.0,1.0,1.0
+display long listing of all the symbolic links in the current folder,['find . -type l -exec ls -l {} \\;'],1.0,1.0,1.0
+Displays status of currently active network interfaces.,['ifconfig'],0.28489318277723963,0.6786502681586727,0.6786502681586727
+"Download ""https://s3.amazonaws.com/sampletest/sample.tar.gz"", unzip it, and untar it replacing filenames with ""old"" to ""new""","['curl https://s3.amazonaws.com/sampletest/sample.tar.gz | gunzip | pax -r -s ""/old/new/""']",0.4730955781656785,0.503704879187682,0.10863519232357637
+"download a file ""http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip"" using cookies ""oraclelicense=accept-securebackup-cookie""","['curl -L -C - -b ""oraclelicense=accept-securebackup-cookie"" -O http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip']",0.892685702965102,0.8768615571698726,0.9044458781539984
+"download contents from  ""http://url"" using a proxy server",['curl -x http://proxy_server:proxy_port --proxy-user username:password -L http://url'],0.2923092463569556,0.49774567727487445,0.21789173031620712
+"download contents from ""http://www.example.com"" using a proxy server",['curl http://www.example.com --proxy http://125.119.175.48:8909'],0.46852539509250307,0.643159920599777,0.5809047579376652
+"Dry run making directories in ""/TARGET_FOLDER_ROOT/"" for each "".mov"" file in the current directory tree","['find . -type f -iname \\*.mov -printf \'%h\\n\' | sort | uniq | xargs -n 1 -d \'\\n\' -I \'{}\' echo mkdir -vp ""/TARGET_FOLDER_ROOT/{}""']",0.10290934815657,0.5471899374199508,0.44942837124823
+"Dump the character output of ""echo 'hi'""","[""echo 'hi' | od -c""]",1.0,0.5683565265173782,1.0
+Enables shell option 'nullglob'.,['shopt -s execfail'],0.4924790605054523,0.4924790605054523,0.4924790605054523
+"Execute ""cd ${REMOTE_PATH}; mkdir -p $i"" on host ""$SERVER"" as user ""$USER"" and connect standard input to ""/dev/null""","['ssh $USER@$SERVER ""cd ${REMOTE_PATH}; mkdir -p $i"" < /dev/null']",0.6763808177000735,0.7896315290256377,0.7858075351590706
+"Execute ""cd /some/directory/myprogram"" in the background on target machine ""user@target"" and write standard output and standard error to foo.out and foo.err","['ssh user@target ""cd /some/directory; nohup myprogram > foo.out 2> foo.err < /dev/null""']",0.5754514733007464,0.6776610501105959,0.3841759489458987
+"Execute ""ls -l"" every 0.5 seconds",['watch -n 0.5 ls -l'],0.4781982357165065,0.4781982357165065,0.8187307530779819
+"Execute all commands in ""/path/to/commands-inc.sh"" on server ""remote"" as user ""user""","[""ssh user@remote 'bash -s' < /path/to/commands-inc.sh""]",0.8231522742830563,0.5926052172550949,0.7553136780378995
+Execute Shell script with find comamnd,"['find -maxdepth 0 -name ""*.sh""  -exec ./lastline.sh {} \\;']",0.14221959038153822,0.4922852552611751,0.0025956791734401065
+"Extract any line in sorted file ""A"" that does not appear in ""B"", ""C"", or ""D""",['cat B C D | sort | comm -2 -3 A -'],0.2607870835813377,0.21510544667604686,0.23564773123966476
+Extract protocol and host name from URL.,"['echo ""$url"" | cut -d\'/\' -f1-3']",0.7320469903177208,0.9004122759170241,0.11832404110131832
+"Extract, sort and print only group names from /etc/group.",['cut -d: -f1 /etc/group | sort'],0.36645638677958536,0.32909838131940905,0.5178612511850341
+"File 'save_pid.txt' contains a process ID, instantly kill this process with SIGKILL signal.",['kill -9 `cat save_pid.txt`'],0.7312094557064525,0.5264663902174495,0.7312094557064525
+"Filters out all comments from the output of the command ""crontab -u $user -l"" ignoring errors","[""crontab -u $user -l 2>/dev/null | grep -v '^#'""]",0.4717302403440772,0.44964499689286325,0.5717440603188442
+find .gif files in /var/www and below that were last changed between 90 and 180 days ago,['find /var/www -name *.gif -ctime +90 -ctime -180'],0.6568246646453402,0.5414250507554634,1.0
+Find a directory named 'project.images' in the entire filesystem and show it in long listing format,"['find  / -type d -name ""project.images"" -ls']",0.6021619602656899,0.935986931131628,0.956570371605845
+"find all the "".c"" files in the folder ""/home/you"" which have been accessed in the last 30*24 hours","['find /home/you -iname ""*.c"" -atime -30 -type -f']",0.6456532236763105,0.5313444343863503,0.7597050094551053
+"find all the "".flac"" files in the current folder and convert them to mp3 with 128k bit rate","['find -name ""*.flac"" -exec ffmpeg -i {} -acodec libmp3lame -ab 128k {}.mp3 \\;']",0.3855312090615453,0.7194157183346438,0.771808647844902
+find all '*.c' files under $HOME directory which context contains sprintf,"[""find $HOME -name '*.c' -print | xargs grep -l sprintf""]",0.8767327617629233,0.6557450774955974,0.7567239478329992
+"Find all *.c files under and below the current directory that contain ""hogehoge""",['find . -name \\*.c | xargs grep hogehoge'],0.7402701909624186,0.6810158901590794,0.8249631240763372
+Find all *.ext regular files under /path and execute my_cool_script for each of them with the file path as argument,"[""find /path -type f -name '*.ext' -exec my_cool_script \\{\\} \\;""]",0.8410764238634807,0.8118257943562567,0.7266935810713416
+"Find all *.mp3, *.aif*, *.m4p, *.wav, *.flac files under $musicdir directory","['find ""$musicdir"" -type f -print | egrep -i \'\\.(mp3|aif*|m4p|wav|flac)$\'']",0.2877444291494661,0.21964273031256618,0.2838073557925466
+"Find all *.page (case insensitive) files/directories under current directory and run ~/t.sh for each of them with the file path as argument, then sort the output",['find . -iname *.page -exec ~/t.sh {} \\; | sort'],0.7172372044382757,0.889804587487893,0.889804587487893
+Find all *.pdf.marker files under ${INPUT_LOCATION} and move them to ${OUTPUT_LOCATION} also move any *.pdf files with the same name under current directory to ${OUTPUT_LOCATION},"['find ${INPUT_LOCATION}/ -name ""*.pdf.marker"" | xargs -I file mv file $(basename file .marker) ${OUTPUT_LOCATION}/.']",0.44326992528887943,0.5634020080072789,0.5019271035025678
+Find all *.rb (regular) files under current directory and count their line numbers,"['find . -name ""*.rb"" -type f | xargs wc -l']",0.6267280722301198,0.6838133550018131,0.5145281373742829
+Find all *.swp files/directories under current directory and print the list to a file named 'rm',"['find . -name ""*.swp"" > rm']",0.3789959291091506,0.4885976159169336,0.2594103988922758
+"Find all *.txt, *.html files under /basedir that match the case insensitive pattern *company* in their names","[""find /basedir/ \\( -iname '*company*' -and \\( -iname '*.txt' -or -iname '*.html' \\) \\) -print0""]",0.4855488410703637,0.5924299239337616,0.6659125103243513
+Find all *.txt files that reside under and below /home/wsuNID/,"['find /home/wsuNID/ -name ""*.txt""']",0.6651863488771413,0.7650272409206431,0.9167409308877169
+Find all *.xml files under current directory,['find -name *.xml'],0.6784751099899603,0.7778111223054219,0.6784751099899603
+Find all *gz files under asia and emea directory and print their names and line counts to file_count.txt,"['find asia emea -type f -name ""*gz"" | while IFS= read -r fname; do printf ""%s %s\\n"" ""$fname"" $(gzip -dc ""$fname"" | wc -l) >> file_count.txt; done']",0.3955542105353521,0.09184251673063466,0.3757513851196552
+Find all *text files/directories under current directory,"['find -name ""*text""']",0.8463748575019103,0.6416621421905118,0.6416621421905118
+Find all .less files in the current directory tree,['find . -name *.less'],0.7376362162899195,0.8137489370974955,0.8137489370974955
+"Find all .sql files in the current directory recursively and apply script ""scriptname"" to them","[""find . -name '*.sql' -exec scriptname {} +""]",0.5139444925640939,0.8276756472065173,0.8276756472065173
+"Find all 1.txt, 2.txt and 3.txt files under current directory and change the permission to 444",['find . \\( -name 1.txt -o -name 2.txt -o -name 3.txt \\) -print|xargs chmod 444'],0.24937122462150885,0.24937122462150885,0.24937122462150885
+Find all aliencoders.[0-9]+ files/directories under /home/jassi/ directory,"['find /home/jassi/ -name ""aliencoders.[0-9]+""']",0.917019812405955,1.0,0.9590780630024102
+Find all aliencoders.[0-9]+ files under /home/jassi/ directory,"['find /home/jassi/ -type f -name ""aliencoders.[0-9]+""']",0.8286218872385858,0.859984940766834,0.9506885335787997
+find all the backup files in the current folder and delete them after user confirmation,"['find . -type f -name ""*.bak"" -exec rm -i {} \\;']",0.6479449853875857,0.6386903395444002,0.7575493664123897
+Find all catalina* files/directories under /path/to/search/in,"[""find /path/to/search/in -name 'catalina*'""]",0.9106520295213664,0.9106520295213664,0.9106520295213664
+find all the configuration files in /etc folder along with the last access & modification time,"['find /etc -name ""*.conf"" -printf ""%f %a, %t\\n""']",0.5104411841948974,0.6389173430082704,0.7295579680733919
+find all the configuration files in the file system,"['find / -name ""*.conf""']",1.0,1.0,0.6888074582865503
+"find all the cpp(C++ source files), java, header files in the current directory",['find . -name *.cpp -o -name *.h -o -name *.java'],0.5660423565706736,0.5660423565706736,0.18885628927589776
+find all the css files,"[""find -name '*.css'""]",0.5288048437910816,0.3538995029906511,0.4651152529836404
+Find all directories in the /data1/realtime directory tree that were last modified more than 5 minutes ago but less than 60 minutes ago,['find /data1/realtime -mmin -60 -mmin +5 -type d'],0.7639674340089232,0.9314279736002498,0.8088264376016491
+Find all directories in the current directory tree whose names do not contain '.' and move their contents to the current directory,"[""find . -type d ! -iname '*.*' | while read d; do mv $d/* .; done""]",0.36229521795643505,0.3884134346000454,0.4518527100749312
+find all the directories in the current folder and change to these directories and run a command,"['find . -type d -exec sh -c \'cd -P -- ""{}"" && pwd -P\' \\;']",0.561400527919645,0.5123633701517298,0.5411015673573475
+find all the directories in current folder and delete them,['find . -type d -delete'],0.49513238243961033,0.4729574505527735,0.4729574505527735
+find all the directories in the current folder excluding search in the sub directories and create these directories in another path,"[""find . -maxdepth 1 -type d | xargs -I X mkdir '/new/directory/X'""]",0.2467647230685363,0.5199162653589652,0.6132112593139036
+Find all directories that have been accessed $FTIME days ago under current directory tree,['find . -type d -atime $FTIME'],1.0,1.0,1.0
+find all directories that names are 'project.images' and display details,"['find  / -type d -name ""project.images"" -ls']",0.8330135468813855,0.8330135468813855,1.0
+Find all directories under /home/username/public_html/sites/all/themes and set their permission to 750,['find /home/username/public_html/sites/all/themes -type d -exec chmod 750 {} +'],0.9378758169522896,0.9105248051449845,0.9378758169522896
+Find all directories under /home/username/public_html/themes and set their permission to 750,['find /home/username/public_html/themes -type d -exec chmod 750 {} +'],1.0,0.9290594887106873,1.0
+"Find all directories under current directory and set read-write-execute permission for owner, read-execute permission for group and other for those directories","['find . -type d -exec chmod u=rwx,g=rx,o=rx {} \\;']",0.8790043070790863,0.8184215172432201,0.8790043070790863
+"find all the directories with the name ""DIRNAME"" in the current folder and force delete them",['find . -type d -name “DIRNAME” -exec rm -rf {} \\;'],0.8926242079441261,0.8926242079441261,0.5796705447493724
+find all empty files,['find / -empty'],0.2925612730731506,0.49009410393069486,0.7611606003349892
+find all the empty files and folders in your system,['find / -empty'],1.0,1.0,0.2819782034509925
+Find all fglrx-libGL* files under and below debian/fglrx/,"[""find debian/fglrx/ -name 'fglrx-libGL*'""]",0.9051034981560222,1.0,1.0
+find all files & dircetiry in current directory which  have .tmp extension and delete them .,"['find . -type f -name ""*.tmp""  -exec rm -rf {} \\;']",0.7715360982611562,0.9069623360099354,0.9069623360099354
+Find all files/directories containing the case insensitive string something' in their names under current directory tree,"[""find . -iname '*something*'""]",0.8590888738245122,0.8590888738245122,0.8590888738245122
+Find all files/directories in current directory and run the command 'command' on each of them invoking the command as few times as possible,['find -exec command {} +'],0.5739770950360968,0.7045399179025552,0.26335672473858446
+"Find all files and directories in the current directory tree with ""linkin park"" in their names and copy them to /Users/tommye/Desktop/LP","['find . -iname ""*linkin park*"" -exec cp -r {} /Users/tommye/Desktop/LP \\;']",0.9281651144072169,0.8821675642952064,0.9215726420419857
+Find all files/directories matching the regex .*sql.*,['find -regex .*sql.*'],0.7055645543810036,0.7055645543810036,0.7055645543810036
+Find all files/directories named 'foo' in the entire filesystem,['find / -name foo'],1.0,1.0,1.0
+Find all files/directories named 'foo.bar' in the entire filesystem,['find / -name foo.bar -print'],0.7046880897187133,0.7046880897187133,0.7046880897187133
+Find all files/directories named 'testfile.txt' under current directory tree,['find . -name testfile.txt'],1.0,1.0,1.0
+Find all files/directories that contain 'packet' (case insensitive) in their names excluding directories that are bigger than 1500 bytes in size,"['find . -iregex "".*packet.*"" ! -type d -size +1500c']",0.47103517044478566,0.6238924675039451,0.6158059642894812
+"Find all files/directories that have read, write, execution permission for user and belong to the user 'my_user' under current directory tree",['find . -user my_user -perm -u+rwx'],0.810202067968894,0.41261382390650736,0.8419365322416251
+Find all files/directories under $dir directory,"['find ""$dir""']",0.598690849764947,0.35630548449868954,0.5401725898595141
+Find all files/directories under '/usr/share/doc' directory tree whose name start with 'README',['find /usr/share/doc -name README\\*'],0.8702397637697912,0.8702397637697912,0.946567449828906
+Find all files/directories under ./var/log directory,['find ./var/log'],1.0,1.0,1.0
+Find all files/directories under /path/to/dir and set directory permission to 0755 and file permission to 0644,"[""find /path/to/dir -type d -exec chmod 0755 '{}' \\; -o -type f -exec chmod 0644 '{}' \\;""]",0.7055228243905924,0.7911524629903519,0.4069258665234222
+"find all files and directories under the current directory and display the filesize followed by the filename, using the stat command on FreeBSD/OSX","['find . -type f -exec stat -f ""%z %N"" {} \\;']",0.7059592136425754,0.7504221961306511,0.46775793659417675
+Find all files/directories under current directory in maximum 3 levels deep,['find -maxdepth 3'],0.5798442808829941,0.6733187455351302,0.6733187455351302
+Find all files/directories under current directory with null character as the delimiter and then replace the null characters with :,"['find -print0 | tr ""\\0"" "":""']",0.3320896984854076,0.3291047123611955,0.23550443892434977
+Find all files and directories under current directory without crossing over to other partitions,['find . -xdev -print0'],0.9487294800164372,0.12415611167211975,0.41488865152565224
+Find all files/directories which have been modified from the start of the day in directories/files taken from the glob pattern '/tmp/test/*',['find /tmp/test/* -daystart -mtime -0'],0.948817232064567,0.948817232064567,0.948817232064567
+"Find all files/directories with '.tar.gz' extension under $DIR/tmp/daily/ directory tree, sort them numerically and show the last 3 of them","[""find $DIR/tmp/daily/ -name '*.tar.gz' | sort -n | tail -3""]",0.6825301780525997,0.8847294928604533,0.9073243747459369
+Find all files/directories with 'my key phrase' in their names under current directory,"[""find . -name '*my key phrase*'""]",1.0,0.8743414417652072,1.0
+"Finds all files having text ""texthere"" recursively in a current folder, and precedes found string with string number in file and file name.","['find -type f -exec grep -Hn ""texthere"" {} +']",0.27164040760018526,0.27164040760018526,0.5559796287838437
+Find all files in the `sourceDir' directory tree,['find sourceDir -mindepth 1'],0.6226286985611427,0.42437284567694994,0.6226286985611427
+Find all files in the /home/myuser directory recursively that are older than 7 days,['find /home/myuser -mtime +7 -print'],0.7866754654718968,0.9234732618882052,1.0
+Find all files in the current directory and its sub-directories that have been modified sometime in the last 24 hours.,['find . -mtime -1 -prin'],0.580302709451948,0.8232490471721702,0.580302709451948
+find all the files in current directory of size greater than 10MB and less than 20 MB.,['find . -size +10M -size -20M'],1.0,0.8890308915338013,1.0
+Find all files in the current directory recursively that were last modified more than 5 days ago,['find ./* -mtime +5'],0.7816275318041329,0.5697863655544793,0.7816275318041329
+Find all files in current directory that were modified less than 1 day ago excluding hidden files  and archive them to /media/caca/extract/full$date.cpio,['find . -depth \\( -wholename \\./\\.\\* \\) -prune -o -print| cpio -aov > /media/caca/extract/full$date.cpio'],0.5668257348953349,0.5912067632671633,0.6094766653274825
+find all the files in the current directory which have been modified after a file,['find . -newer file'],1.0,0.8301241257597977,0.5681749719417439
+find all the files in the current folder and display them in the sorted order of their name,['find . | sort'],0.2819782034509925,0.7533808072882879,0.14288752829815848
+find all files in the current folder that are not modified in the last 10 minutes,['find . -mmin +10 -print'],0.5595458546033194,0.5595458546033194,0.5595458546033194
+find all the files in the current folder that have been accessed in today,['find -atime 0'],0.7856293018010261,0.7856293018010261,0.4922703681524304
+find all files in the current folder which are bigger than 10bytes,['find . — size +10 -print'],0.5229336801061241,0.5229336801061241,0.549696364469696
+find all the files in the current folder which have been modified in the 10 minutes ago,['find -mmin +15 -mmin -25'],0.36256300273131326,0.36256300273131326,0.4163872466286158
+find all the files in current folder which end with a speicifc regular expression and display their count,"['find ./ -type f -regex "".*\\.[JPGjpg]$"" | wc -l']",0.49723096578684484,0.6400930903644637,0.6256906162179455
+find all the files in the current folder which have execute permission,['find . -executable'],0.42282359171428024,0.3152861344254501,0.29534359244592506
+find all the files in the directory which is pointed by $1 variable ending with the name held in the variable $2 or having the extension of value saved in the argument $2.,"['find $1 \\( -name ""*$2"" -o -name "".*$2"" \\) -print']",0.20842769389906565,0.48505477535979746,0.3741347880500005
+find all the files in the folder /opt which have been accessed exactly 20 days ago,['find /opt -atime 20'],1.0,1.0,1.0
+find all the files in the home folder that are modified day before yesterday,['find $HOME -mtime -2 -mtime +1'],0.4418975777649826,0.3836920867510016,0.5155748322112255
+Find all files in ~/clang+llvm-3.3/bin/ and print 'basename /file/path' for each file,['find ~/clang+llvm-3.3/bin/ -type f -exec echo basename {} \\;'],0.8998957839803103,0.6528882431735259,0.6491428809434255
+"Find all files matching the pattern ""${pattern}"" in their name and execute ${my_command} for each of them with the file path as argument","['find ${directory} -name ""${pattern}"" -print0 | xargs -0 ${my_command}']",0.40646241508286957,0.40199291246098756,0.4911105801441938
+"Find all files recursively which end in "".php""","['find . -name ""*.php"" -print']",0.5758489794062054,0.7046880897187133,1.0
+Find all files residing in /home/dm/Video or below that were changed less than 7 days ago,['find /home/dm/Video -mtime -7'],0.9061874434879645,0.7017437105337435,0.6642831223759174
+find all the files that have been changed today,['find . -ctime 0 -type f'],0.28755838200176376,0.5388058943574727,0.07426487685814917
+find all the files that have been modified exactly 2 days ago,['find -mtime 2'],0.5163536523604442,0.7856293018010261,1.0
+Find all files that belongs to group Developer under /home directory,['find /home -group developer'],0.8985396083419646,0.8985396083419646,0.8985396083419646
+Find all files that belong to group root,['find / -group root'],1.0,1.0,1.0
+Find all files under $1 not matching the regex '.*/\..*' and execute hashmove on each of them with the file path as its argument,"[""find $1 -type f -not -regex '.*/\\..*' -exec $0 hashmove '{}' \\;""]",0.576935673934047,0.4908032935133985,0.6090629850103841
+Find all the files under /etc directory which are larger than 100k,['find /etc -size +100k'],1.0,1.0,0.7352923728444682
+Find all files under /somefolder matching the pattern expanded by $FILE_PATTERN in thier names,['find /somefolder -type f -name $FILE_PATTERN'],0.7641358389429771,0.6216947084188319,0.7661529209358559
+Find all files under and below the current working directory with the word California in the file,['find . -type f -exec grep California {} \\; -print'],0.6499862400782321,0.5442026631194296,0.3963336193353403
+Find all files under current directory,"['find ""`pwd`"" -type f']",0.5097786118996651,0.18879521773374403,0.5097786118996651
+"Find all files under current directory and make them read-only for owner, read & writable by group and remove read-write-execute permission","['find . -type f -exec chmod u+r-wx,g+rw-x,o-rwx {} \\;']",0.6540281091360741,0.6540281091360741,0.4129160671986632
+Find all files under current directory and run /tmp/clever.sh for each of them with each file path as an argument,['find . -type f -exec /tmp/clever.sh {} \\;'],1.0,0.544567567394302,1.0
+Find all files under current directory and set read-write permission for owner and group and no permission for other for those directories,"['find . -type f -exec chmod ug=rw,o= {} \\;']",0.8195721998506681,0.6144234912946458,0.8828704089744474
+"Find all files under current directory, calculate their md5sum",['find . -type f -print0 | parallel -0 -X md5sum'],0.43409743954905483,0.5604187811231217,0.3669482397361958
+Find all files under current directory excluding hidden files,"[""find . -depth -path './.*' -prune -o -print""]",0.4637649197319943,0.2710663172723834,0.38609177147326634
+Find all files under current directory matching the regex '.*\(\(error\|access\)\(_log\)?\|mod_jk\.log\)\.[0-9]+' in their paths,"[""find -type f -regex '.*\\(\\(error\\|access\\)\\(_log\\)?\\|mod_jk\\.log\\)\\.[0-9]+'""]",0.7869475384360682,0.8153940206937891,1.0
+"find all files under the current directory that end in ""foo"" and execute somecommand on each quoted filename","['find . -name ""*.foo"" -exec somecommand ""{}"" \\;']",0.8049201573853505,0.6669659717382533,0.8322384139088037
+Find all files under current directory that match the case insensitive regex .\|./.git and replace (all occurrences) the text matching the case insensitive regex expanded by $1 with $upper2 in these files,"['find . -type f \\! -iregex \'.\\|./.git\' -exec perl -i\'\' -pe ""s/$1/$upper2/gi"" {} +']",0.9100736119284794,0.8296535742649356,0.8296535742649356
+Find all files under current directory that were modified more than 1 day ago,['find -mtime +1'],0.539605905312277,0.539605905312277,0.801412271514017
+"Find all files under the current directory whose filenames are not ""file.txt"", ignoring the case",['find . -maxdepth 1 -not -iname file.txt'],0.5488117700216822,0.43503791983798923,0.4517766268671469
+Find all files under current directory with their timestamp and paths and print a sorted list,"['sort < <(find -printf ""%T@ %p\\n"")']",0.23076594843785558,0.5580672801947193,0.6096787979046306
+Find all files with '.db' extension (case insensitive) that belong to user 'exampleuser' and were modified exactly 7 days ago under '/home' directory tree,"['find /home -user exampleuser -mtime 7 -iname "".db""']",0.7290140616286379,0.948661035297062,0.766752145678388
+find all the files with the extension .xml and print them in a single line and check for the validity of a command by giving the file as input,['find . -name *.xml -print0 | xargs -n 1 -0 invalid_command'],0.24196734951625856,0.3907234443520965,0.2978047996671981
+find all foo.bar files in the entire file system,['find / -name foo.bar -print'],0.7046880897187133,0.7046880897187133,0.7046880897187133
+Find all hidden directories starting from the current directory,"['find . -type d -name "".*""']",0.6142867349067719,0.7749224723289705,0.45579401832801714
+"Find all lines matching ""$USER"" in ""file"" and number the output",['grep  $USER file |nl'],0.5430321466633391,0.09043833360564858,0.3696665302879492
+"Finds all the log* files in /myDir recursively that are more than 7 days older, skipping already created .bz2 archives and compresses them.","[""find /myDir -name 'log*' -and -not -name '*.bz2' -ctime +7 -exec bzip2 -zv {} \\;""]",0.5376914520775826,0.44585000297206817,0.6671782072384909
+Find all Makefile's in the current directory tree and look for line 235 in each of them,['find . -name Makefile -print0 | xargs -0 grep -nH $ | grep :235:'],0.45136187674372696,0.45740611616119653,0.4555487597360766
+find all raw images in the current folder and pass them one at a time to the xargs command and enable parallel processing of the files,"[""find . -type f -iname '*.CR2' -print0 | xargs -0 -n 1 -P 8 -I {}""]",0.5917086859526206,0.2552410752671641,0.22959833366132215
+find all regular file and create jw-htmlfiles.tar,"['find . -type f -name ""*html"" | xargs tar cvf jw-htmlfiles.tar -']",0.6916179461828116,0.5331680145685649,0.7407222863348724
+"find all the regular/normal files ending with "".mod"" in a folder and send them as input to the remodup command","['find $DIR -name ""*.mod"" -type f -exec remodup {} \\;']",0.69446497403359,0.4481857734592496,0.35899319457982637
+find all the normal/regular files in the current directory and search for the word mail and display the file names,['find . -type f -exec grep -il mail'],0.712508294321657,0.5703861713598207,0.5115135224889812
+Find all regular files in the current directory tree and print a command to move them to the current directory,['find . -type f -exec echo mv -t . {} +'],0.3113841382771636,0.5644104215206691,0.4951026829884119
+Find all regular files in the current directory tree last modified between 1 and 3 days ago and list them using format '%Tc %p\n',"[""find ./ -daystart -mtime -3 -type f  ! -mtime -1  -printf '%Tc %p\\n'""]",0.38835088892732644,0.7153467507799549,0.5738491809933096
+Find all regular files in the current directory tree that have been modified within the last 10 minutes,['find . –type f -mmin -10'],0.796692189389272,0.8843865924896842,0.796692189389272
+find all the regular/normal files in the current folder which have been accessed in the last 1440*24 hours and not modified in 1441*24 hours excluding those which are in the custom sub directory tree,['ionice -c 3 find  . -type f -amin -1440 -mmin +1441 -not -path custom/ -print0'],0.40170119306266233,0.4867007319060611,0.4293540998419495
+"find all the regular files in the current folder which start with a ""some text""","[""find . -type f -name '*some text*'""]",0.8601391404758658,0.7252510836426073,0.7773773258240791
+"find all normal/regular files in the folder ""//path/to/source/Directory"" and calculate the md5sum of them and save the output to  file Output.txt","[""find //path/to/source/Directory -type f -exec md5sum {} + | awk '{print $0}' > Output.txt""]",0.7142098501924253,0.7142098501924253,0.7080888430225877
+Find all regular files named postgis-2.0.0 under your home directory,"['find ~/ -type f -name ""postgis-2.0.0""']",0.8294838585473985,0.8294838585473985,0.8294838585473985
+Find all regular files that start with stat,['find . -type f –iname stat*'],0.6432343886784389,0.6580771759973243,0.7637483416234716
+"Find all regular files under $DIR/tmp/daily/, sort them in reverse numerical order and copy the first two files to $DIR/tmp/weekly/","['find $DIR/tmp/daily/ -type f -printf ""%p\\n"" | sort -rn | head -n 2 | xargs -I{} cp {} $DIR/tmp/weekly/']",0.7109078113118176,0.6521120554061777,0.6308156662042332
+Find all regular files under test directory,['find test -type f'],1.0,1.0,1.0
+find all sqlite files in the current directory.,"['find ./ -name ""*.sqlite""']",0.8862476419965991,0.8862476419965991,0.6978742132255056
+Find all SUID files .,['find /  -perm /u=s'],0.6420524082455379,0.8917143641551922,0.8917143641551922
+Find all SUID set files under current directory and show a few lines of output from the beginning,['find . -perm /u=s | head'],0.293905470627611,0.40741042824073115,0.21789628260154292
+find all the text files in current folder and force delete them,"['find . -name ""*.txt"" | xargs rm -rf']",0.7100917514195592,0.7100917514195592,0.7100917514195592
+find all the text files in the current folder and do not  search in the sub directories,"['find -maxdepth 1 -iname ""*.txt""']",0.8553675347404799,0.4511429597644212,0.6890537737180445
+Find all top level directories under current directory that doesn't contain a file/directory named 'bin',"[""comm -3 <(printf '%s\\n' */ | sed 's|/.*||' | sort) <(find */ -type d -name bin | cut -d/ -f1 | uniq)""]",0.1366149568696659,0.21759838356931524,0.12145435840382647
+find all the video files in the folder /home/<user>,"['find /home/<user> -type f -exec file {} + | grep -E ""MPEG v4|EBML|Microsoft ASF|Macromedia Flash Video|WebM|Apple QuickTime movie|AVI""']",0.16657477059683126,0.02689212799454104,0.02771284117810886
+find all the zip files in the current folder and create a tar ball of these zip files,"[""find . -type f -name '*.zip' -print0 | xargs -0 tar -xzf""]",0.4492307778779577,0.2978931294038706,0.7683116304807173
+Find an inode and remove,['find . -inum 968746 -exec rm -i {} \\;'],0.06930042304746063,0.3545200155606428,0.6689238206135786
+Find and replace xxx with yyy in whole directory tree,"[""find . -type f -exec perl -pi -e 's|xxx|yyy|g' {} ;""]",0.39238162465778686,0.4755483153862405,0.2585612750454998
+Find directories that are directly under $workspace_ts directory (no-subdirectories) and were modified less than 30 days ago,['find $workspace_ts -mindepth 1 -maxdepth 1 -type d -mtime -30'],0.6560597058672708,0.6313418899872502,0.5938976752309505
+Find directories that are directly under $workspace_ts directory (no-subdirectories) and were modified more than 30 days ago,['find $workspace_ts -mindepth 1 -maxdepth 1 -type d -mtime +30 -print'],0.5534716151350315,0.6034029030505459,0.5960564800075049
+Find directories with permissions 777 and change them to 755 recursively,['find /home -type d -perm 777 -print -exec chmod 755 {} \\;'],0.7374561606091778,0.7374561606091778,0.8815791572391509
+Find disk used space of only the target directory,['du --max-depth=0 ./directory'],0.08607505569878658,0.38164125484837724,0.11345092098835018
+Find every JavaScript file in the wordpress directory tree,"[""find wordpress -name '*js'""]",0.8985396083419646,0.8985396083419646,0.6511124161720042
+Find executable files,['find . -perm -100 -print'],0.5181212746323438,0.2533922732210082,0.4111074408706506
+"find the file ""filename.txt"" in the usr folder",['find /usr -name filename.txt -print'],0.740114051768759,0.740114051768759,0.740114051768759
+Find files/directories named 'document' in the entire filesystem and in the directory tree '/usr' even if it's in a different partition without traversing to other devices/partitions,['find / /usr -xdev -name document -print'],0.814181106580581,0.7067467387344255,0.8422580477058239
+"Find files/directories under /users/tom that matches both the pattern ""*.pl"" and  ""*.pm""","['find /users/tom -name ""*.pl"" -name ""*.pm""']",0.9019486455518121,0.7219794692694343,0.6130282034352504
+Find files/directories under current directory that matches the regex '/path/to/something'  in their paths,"[""find . -exec sh -c 'echo {} | grep -qi /path/to/something' \\; -print""]",0.47532320886352863,0.24918243959524808,0.30514968596139913
+find files in the /usr/src directory with pattern` *.c  that larger than 100 Kilobytes,"[""find /usr/src -name '*.c' -size +100k -print""]",0.8305217629638696,0.8305217629638696,0.7095541798682822
+Find files modified at least 5 days in the future,"['find . -newermt ""5 days""']",0.3502979072560522,0.36152523418875304,0.17540910089249057
+Find files on the system accessed during the last 24 hours but not within the last hour,['find / -atime -1 -amin +60'],0.5352614285189903,0.5352614285189903,0.5352614285189903
+Find files that are empty,['find -empty -type -f'],0.22199782331637094,0.44424794252656463,0.44424794252656463
+Find files that are orphaned,['find -nouser'],0.05606986387413083,0.08917631497150462,0.04688286989285203
+Find files that don’t have 644 permissions,['find / -type f ! -perm 644'],0.7937559205024689,0.8192749109492629,0.8985396083419646
+Find files with size more than 200557600B and which are more than 2 days old under  ${userdir}/${i}/incoming directory and remove them,['find ${userdir}/${i}/incoming -mtime +2 -type f -size +200557600c -exec rm {} \\;'],0.7189438531383182,0.33693467836562185,0.7077936590081713
+Finds if 'subversion' package is installed in system.,['yum list | grep subversion'],0.4534493438561715,0.39772826197912353,0.4842734640584506
+Find links to file path/to/foo.txt,['find -L / -samefile path/to/foo.txt'],0.42313450156959803,0.3620616036019039,0.47135293069222467
+find md5sum of a string stored in $pass,"['printf \'%s\' ""$pass"" | md5']",0.407652363692268,0.23465398368701493,0.39363909367121025
+Finds PIDs of ssh sessions of all logged in users.,"[""pgrep -u w | grep ssh| awk '{print $1}' ssh""]",0.15543304562353252,0.2396323737528183,0.3270822611004925
+"Finds recursively all files not having extension .o in '/path/' that contain 'pattern', and prints matched strings with string number and file name.","['grep --exclude=*.o -rnw \'/path/to/somewhere/\' -e ""pattern""']",0.465396806531503,0.33369607777254084,0.3370049658743701
+Find regular files that are larger than 2GB,['find . -type f -size +2G'],0.8843865924896842,0.8843865924896842,0.7010615979282331
+find the regular js files which path does not contains '*/test/*'  and name does not contains '*-min-*' or '*console*',"['find . ! -path ""*/test/*"" -type f -name ""*.js"" ! -name ""*-min-*"" ! -name ""*console*""']",0.6799285633194907,0.20486833821789882,0.4735460140392022
+"Find sqlite3 databases in the current directory tree, execute query 'SELECT * FROM table WHERE column1=""value""' on all of them, and search the result for ""value""","['find . -name ""*.db"" -type f | while read file ; do sqlite3 $file ""SELECT * FROM table WHERE column1=\'value\'"" | grep value ; if [ $? -eq 0 ] ; then echo $file ; fi done']",0.41984787273029783,0.4091613793715377,0.44582842431140857
+Find strings with 'Features' in /var/run/dmesg.boot' file,['cat /var/run/dmesg.boot | grep Features'],0.7325321285501184,0.5816278169782344,0.781992531648379
+"Find symbolic links in lpi104-6 and research/lpi104-6 to files whose pathnames end in ""file1""","['find lpi104-6 research/lpi104-6 -lname ""*file1""']",0.38888876327492305,0.40992192235659863,0.13304840555742722
+Find symlinks in the current directory tree,['find . -type l | xargs ls -ld'],0.029364512160773768,0.48065033821916225,0.3425188550930455
+Find the top level directories that contain a 'bin' directory in it or in one of it's sub-directories and print a sorted list to file b,"['find . -type d -name bin | cut -d/ -f1,2 | sort > b']",0.46508624447002106,0.4383621561583623,0.5368682686966025
+Find writable files in the current directory tree,['find . -writable'],0.10540405058616682,0.6305722688509002,0.289395234284078
+"Force create a symbolic link to ""$f"" in ""~/my-existing-links/"" with name the basename of ""$f""","['ln -sf ""$f"" ""~/my-existing-links/$(basename $f)""']",0.6962834867964117,0.7793766875818087,0.41217161771755967
+"forcibly and verbosely create a symbolic link named ""target"" to file ""source""",['ln -sfvn source target'],0.6574012849085678,0.7412150101255036,0.7412150101255036
+Format the filename and modification time of files starting with t as a table on OSX,"[""stat -f 'File: %N Modified: %t%Sm' t* |column -t""]",2.979756595152998e-78,4.4723534463991104e-79,2.8976061185121743e-78
+"Format space separated fields in ""filename"" as a table","[""column -t -s' ' filename""]",0.7952750379837583,0.5398612192731375,0.39116444567696496
+"From a script, output the name of the script itself, without containing directories.",['basename $0'],1.268852357850863e-231,0.573057404379869,3.812727472243035e-155
+Gets a job with defined number back to the foreground.,['fg 1'],5.021333847570327e-78,8.636168555094496e-78,2.7961519085384026e-78
+get all files in a current directory modified in the last day,['find . -mtime -1 | xargs tar --no-recursion -czf myfile.tgz'],0.13602921084920327,0.13734364486719877,0.16572198516299522
+get all the files that are exactly 30 days old,['find . -mtime 30 -print'],0.645648526427892,0.645648526427892,0.645648526427892
+Get current host's IPv6 address.,"['host $(uname -n) | grep ""IPv6 address"" | head -n 1 | awk \'{print $5}\'']",0.1643015113592475,0.03159648962335527,0.14967908359685028
+Gets IP address of a primary network interface.,"[""/sbin/ifconfig $(netstat -nr | tail -1 | awk '{print $NF}') | awk -F: '/inet /{print $2}' | cut -f1 -d ' '""]",0.2121098693329671,0.14618561000941005,0.15790708835109582
+get the jenkins user access,['sudo su - jenkins'],1.0,1.0,0.5219276037182894
+Installs 'firefox' package.,['yum install firefox'],1.0,1.0,1.0
+"Installs package group ""Development Tools"" answering 'yes' on all questions.","['yum -y groupinstall ""Development Tools""']",0.24145525681920538,0.5060432464745276,0.8649854570273712
+"Installs package group ""MYSQL Database Client"", answering 'yes' on all questions.","['yum -y groupinstall ""MYSQL Database Client""']",0.9088642602990016,0.6459370055627932,0.7273636812224911
+"Invoke a trusted X11 forwarding SSH connection with server ""192.168.0.14"" on port 222 as user ""phil""",['ssh -v -Y phil@192.168.0.14 -p 222'],0.6473261237866273,0.6473261237866273,0.6473261237866273
+Invoke a trusted X11 forwarding SSH connection with the server $ssh_server as user $ssh_user,['ssh -Y $ssh_user@$ssh_server'],0.7203362668653466,0.8020219183488043,0.48162738790808796
+Just find directories and skip file names,"['find  / -type d -name ""apt"" -ls']",0.42899961388953095,0.42899961388953095,0.42899961388953095
+Keep the last 4 ASCII characters (bytes) of a string.,"['echo ""0a.00.1 usb controller some text device 4dc9"" | rev | cut -b1-4 | rev']",0.2784980066955687,0.24209217536475783,0.2028544109015553
+"Keep only the last two hyphen-separated sections of ""abc-def-ghi-jkl""","['echo ""abc-def-ghi-jkl"" | rev | cut -d- -f-2 | rev']",0.8251606483509953,0.8926242079441261,0.4963054760865437
+Kill the processes of user `myuser' that have been working more than 7 days,['find /proc -user myuser -maxdepth 1 -type d -mtime +7 -exec basename {} \\; | xargs kill -9'],0.3110502324826445,0.01712756719882559,0.2993830363619115
+list *.pdf files under the /home/user/Desktop directory.,"[""find /home/user/Desktop -name '*.pdf'""]",0.7276619958533486,0.6267444925442271,0.6267444925442271
+List the abc.def files under the directories /ghi and /jkl which have commented entries and display those entries,['find /ghi /jkl -type f -name abc.def 2> /dev/null -exec grep -H ^# {} \\;'],0.5834542259556095,0.3468836755261453,0.3353343254898853
+"list all the "".ksh"" files in the current directory","['find . -ls -name ""*.ksh""']",0.7406093667638122,0.7406093667638122,0.7406093667638122
+Lists all directories in a current folder.,['ls -d */'],1.0,1.0,0.5814307369682193
+List all environment variables containing 'USER' in their name or value that would result in running a command with 'sudo env'.,['sudo env |grep USER'],0.4088964908638602,0.3267254678399723,0.13052396091611088
+List all files and directories (including hidden) in the current working directory in a long list format sorted by the oldest modification time,['ls -alrt `pwd`/*'],0.07178111339308632,0.07098818705886766,0.05903450822297854
+List all files/directories under current directory and redirect it to /tmp/files.txt,['find . -ls > /tmp/files.txt'],0.6563555554708402,0.7488856162563027,0.7072121098146055
+List all files/directories under current directory with 'FooBar' in their paths ensuring white space safety,"[""find . -print0 | grep --null 'FooBar' | xargs -0""]",0.19649069074111106,0.3409716272507868,0.3794098702141746
+"List all files in the current directory tree that were last modified on the 3rd of March, 2010 or later","['find -newermt ""mar 03, 2010"" -ls']",0.6245064791606766,0.16279208372196727,0.5853315120634979
+list all javascipts file expect files under proc folder,"[""find . -type d -name proc -prune -o -name '*.js'""]",0.2320024477266746,0.2320024477266746,0.33519077041872514
+List all regular files in the current directory tree,"[""find . -type f -exec ls -l '{}' \\;""]",0.8502213476107578,0.8502213476107578,0.8502213476107578
+"list all regular files under the directory ""$directory""","[""find $directory -type f -name '*'""]",0.49690642091733905,0.6493636429148483,0.6474053920839111
+List all unique parent directories of .class files found under the current directory,"[""find -name '*.class' -printf '%h\\n' | sort -u""]",0.20496726398253978,0.7058696246481077,0.500207064905953
+List and see contents of all abc.def files under the directories /ghi and /jkl,['find /ghi /jkl -type f -name abc.def 2> /dev/null -exec ls {} \\; -exec cat {} \\;'],0.20960076539314737,0.20960076539314737,0.3006386402472987
+"List common files in directories ""1"" and ""2""",['cat <(ls 1 | sort -u) <(ls 2 | sort -u) | uniq -d'],0.08490821126200819,0.20613596166724704,0.19742292054256214
+List files and directories one level deep in the current directory tree,['tree -L 2'],5.498436173236756e-155,4.717068855239749e-155,4.692815769740986e-155
+"List only file names matching ""*2012*"" from ""serveripaddress::pt/dir/files/"" listening on port 111 and write to ""output.txt""","['sync --list-only --include ""*2012*.xml"" -exclude ""*.xml"" serveripaddress::pt/dir/files/ --port=111 | awk \'{ $1=$2=$3=$4=""""; print substr($0,5); }\' >output.txt']",0.04439644761579919,0.3844751104850484,0.3771097900886898
+"list txt files older than 5 days or html files of any age, null separated","[""find . \\( -name '*.txt'  -mtime +5 -o -name '*.html' \\) -print0""]",0.32742476215833144,0.5710751452144018,0.3897350779485669
+Locate all *.csv files under the current directory tree separating the file names with zeroes,"['find . -name ""*.csv"" -print0']",0.8032263623299818,0.6231896303766875,0.34030251263211647
+Locate all *.csv regular files under the current directory tree,"['find . -type f -name ""*.csv""']",1.0,1.0,1.0
+Locate files with user permissions rwx owned by my_user,['find . -user my_user -perm -u+rwx'],0.6493206210617224,0.4478593179920782,0.8468233160376012
+"Log into ""ubuntu@ec2-XX-XXX-XXX-XXX.us-west-2.compute.amazonaws.com"" using identity file ""~/path/mykeypair.pem""",['ssh -i ~/path/mykeypair.pem ubuntu@ec2-XX-XXX-XXX-XXX.us-west-2.compute.amazonaws.com'],1.0,1.0,1.0
+login as user YOUR_USER,['su - YOUR_USER'],1.0,0.7742694009950041,0.7742694009950041
+"Login to ""$HOST"" and create file ""$FILE_PATH"" if it does not exist","['ssh -q $HOST ""[[ ! -f $FILE_PATH ]] && touch $FILE_PATH""']",0.3342481658592097,0.3342481658592097,0.3120784911123015
+Look for files whose names begin with letters a-j,"['find  / -name ""[a-j]*"" -print']",0.32431249449555893,0.32201734343516736,0.34387945921945245
+"Make directory ""/tmp/googleTestMock""",['mkdir /tmp/googleTestMock'],1.0,1.0,1.0
+"Make directory ""aaa/bbb""",['mkdir aaa/bbb'],1.0,1.0,1.0
+"Mathematically sum a column of numbers in ""FileWithColumnOfNumbers.txt""","['cat FileWithColumnOfNumbers.txt | xargs ruby -e ""puts ARGV.map(&:to_i).inject(&:+)""']",0.16998018028054646,0.3787106901370169,0.317141603905412
+"Mathematically sum all numbers in ""file.txt""","[""cat file.txt | xargs  | sed -e 's/\\ /+/g' | bc""]",0.283515915795802,0.5435531361407805,0.45359357479653745
+"Merge already sorted files ""file*.txt"" and split the result into files of at most 100000 lines each with a prefix ""sorted_file""",['sort --merge file*.txt | split -l 100000 - sorted_file'],0.8256639443483628,0.7982374762837937,0.7048178058686699
+"Merge already sorted files in the current directory starting with ""_tmp"" and write the output to ""data.tsv.sorted""",['sort -m _tmp* -o data.tsv.sorted'],0.7373879296899241,0.4123372959931046,0.6972670257428477
+"Mount ""/path/to/device"" on ""/path/to/mount/location"" as a loop back device",['mount /path/to/device /path/to/mount/location -o loop'],0.7552645191761302,0.6928034260011856,0.954706986658891
+"Mount ""ext4"" filesystem ""/dev/xvdf1"" on ""/vol""",['sudo mount /dev/xvdf1 /vol -t ext4'],1.0,1.0,0.9265608116842791
+"Mount ""ntfs-3g"" filesystem ""/dev/mapper/myvolume"" on ""/media/volume""",['mount -t ntfs-3g /dev/mapper/myvolume /media/volume'],1.0,0.8653524933750788,0.9528044161455285
+"Mount image ""test"" to loop device ""/dev/loop0""",['sudo mount -o loop /dev/loop0 test'],0.6701364026249627,0.9265608116842791,0.5882281304429848
+"Move ""file.txt"" to docker container ""$CONTAINER_ID"" in path ""/var/lib/docker/devicemapper/mnt/$CONTAINER_ID/rootfs/root/file.txt""",['mv -f file.txt /var/lib/docker/devicemapper/mnt/$CONTAINER_ID/rootfs/root/file.txt'],0.9532197963116518,0.4840229951131837,0.9532197963116518
+Move each of the directories in /path/to/folders/* to another directory whose name is constituted by appending .mbox to each directory name and create a directory named Messages in this directory then move all *.emlx files into this directory,"['find /path/to/folders/* -type d  -exec mv {} {}.mbox \\; -exec mkdir {}.mbox/Messages \\; -exec sh -c ""mv {}.mbox/*.emlx {}.mbox/Messages"" \\;']",0.6438307984742567,0.9054126483454248,0.9054126483454248
+Open a local SSH port on 1080 for application-level port forwarding,['ssh -D1080 root@localhost -g'],0.40089675182837486,0.28232017871523407,0.32980384185673844
+"Open executable file for command ""rails"" in text editor ""mate""",['mate `which rails`'],0.42162441249233046,0.3598590234416894,0.4125519163596689
+"Output ""testFile.txt.1"" without the "".1"" suffix.",['basename testFile.txt.1 .1'],0.33122529987734056,0.44417880766201817,0.29481199950099
+Output all lines in 'file' comparing the first 12 characters and discarding any adjascent lines where these characters are duplicates.,['uniq -w12 -c file'],0.11385988964970627,0.06328843817701152,0.12961487777860567
+"Output all lines that have a common first colon-separated field in files 'selection2.txt' and 'selection1.txt' by displaying the common (first) field of each line, followed by the extra fields in both lines.",['join -t: selection2.txt selection1.txt'],0.707534820391027,0.6066004587177358,0.5089205532301649
+"Output the base name of first argument to script or function, that is the part following the last slash.","['echo $(basename ""$1"")']",0.5517984921708752,0.5404329964865341,0.5404329964865341
+"Page interactively through the output of running 'command' - the arrow keys move the view around, the < and > keys go to the beginning/end of the output, the / key initiates a search, the Q key quits, etc.",['command | less'],0.4084638237653514,0.43554520091572024,0.19476681308252697
+Page through extended information about all PCI devices on system.,['lspci -v -v | less'],0.1986589078880532,0.147786004244987,0.49852287898736825
+"Parse XML file ""example.xml"" and extract and number all ""key"" tags from the ""config"" section","['xmllint example.xml --xpath ""/config/*/@*"" | sed ""s| key|\\nkey|g"" | nl']",0.23134431567502395,0.25126270750979307,0.38026136661926424
+"Pass a wildcard to scp by escaping it: copy all files with names starting with ""files"" in directory ""/location"" on host ""server"" to current directory on local machine, displaying debug info and preserving timestamps and permissions on copied files.",['scp -vp me@server:/location/files\\*'],0.6649719925743963,0.28058834395977617,0.5286174483718351
+"Pipe the output of ls into ""read var"" in its separate process",['ls | read var'],0.34378389732076714,0.3385463794109318,0.25162228443002993
+"Prefix all files and directories in the current directory with ""Unix_"" if the files contain no whitespace or subdirectories",['for FILENAME in *; do mv $FILENAME Unix_$FILENAME; done'],0.057761036948949566,0.11857571548082876,0.13289590750738256
+Preprocess C++ file 'omnitest.cpp' (resolve all preprocessor directives) and page interactively through the result.,['g++ omnitest.cpp -E | less'],0.3570516780816229,0.3855837549043642,0.45126801770853253
+"Print ""found"" if ""blah"" contains the hex byte string ""\xCA\xFE\xBA\xBE""","['cat blah | perl -en \'/\\xCA\\xFE\\xBA\\xBE/ && print ""found""\'']",0.2621012397212688,0.5286793216101895,0.3300921081190081
+"Print ""test=hello world""","['echo ""hello world"" | echo test=$(cat)']",0.460925337627319,0.48617111070855956,0.4282214188208553
+Print '-exec is an action so an implicit -print is not applied' for every file/directory found by the name 'file' under current directory tree,"[""find -name file -exec echo '-exec is an action so an implicit -print is not applied' \\;""]",0.9132412014863275,0.9684007450800212,0.7862853619992839
+"Print 'Empty dir' if $some_dir is empty, otherwise print 'Dir is NOT empty'","['if find ""`echo ""$some_dir""`"" -maxdepth 0 -empty | read v; then echo ""Empty dir""; else ""Dir is NOT empty"" fi']",0.2620417435964651,0.04372619403556687,0.30836172504009973
+"Print 'file' content, formatting output as 29-symbol wide column",['cat file | fold -w29'],0.523095809252298,0.5486871628199034,0.523095809252298
+"Print a 2 byte decimal integer from ""/dev/random""",['od -An -N2 -i /dev/random'],0.3143011469630718,1.9713369134877756e-78,0.26536254035784024
+"Print a count of all unique entries in ""ips.txt"" with the most frequent results at the top",['sort ips.txt | uniq -c | sort -bgr'],0.6356534860913239,0.5795782787848095,0.915713591028251
+Print a line of 10 '#' characters,"['seq  -f ""#"" -s \'\' 10']",0.20786251870772665,5.430927853762242e-78,4.746278653501107e-78
+Print a list of all *.code files from the current directory tree,['find . -name *.code'],0.5983433868580815,0.5765487011292941,0.5651262381047348
+Prints a random line from file,['head -$((${RANDOM} % `wc -l < file` + 1)) file | tail -1'],1.86310672450237e-78,0.18457168267380222,0.17464887661581063
+"Print a randomly sorted list of numbers from 1 to 10 to file ""/tmp/lst"" and outputs ""-------"" followed by the reverse list to the screen","[""seq 1 10 | sort -R | tee /tmp/lst |cat <(cat /tmp/lst) <(echo '-------') | tac""]",0.42985599763675486,0.2557291599131006,0.36827575162827636
+Print a sorted list of all .jpg files in the current directory and below,"[""find -name '*.jpg' | sort -n""]",0.38841068121376743,0.3194788933433886,0.3554621519956452
+prints absolute file paths for files in current directory,['find `pwd` -maxdepth 1'],0.06656213940646744,0.14116578095246593,0.14116578095246593
+Print all files/directories under ... directory by terminating their paths with a null character,['find ... -print0'],1.0,1.0,1.0
+"Print all files containing ""word1"" and ""word2"" in the current directory tree",['comm -12 <(grep -rl word1 . | sort) <(grep -rl word2 . | sort)'],0.2121861152636123,0.31943214732453695,0.2298930394240848
+Print all files that exceed 1000 blocks and were modified at least a month ago,['find / -size +1000 -mtime +30 -exec ls -l {} \\;'],0.48714241847887113,0.5375735693311238,0.7077951436891367
+Print all group names known to the system.,['getent group | cut -d: -f1'],0.027106373194939883,0.027106373194939883,0.027106373194939883
+Print all unique strings in $1.tmp file.,['cat $1.tmp | sort -u'],0.5633940821180058,0.6723042472074123,0.5334053983387737
+Print an alert message containing the IP address and information of the user connecting via SSH,"['echo -e ""ALERT - Shell Access on:\' `date` `who` \'\\n\\n\' `whois $(who | cut -d\'(\' -f2 | cut -d\')\' -f1)`""']",2.124752825975155e-78,0.08511913508312549,2.1039511191289436e-78
+"Print characters in variable ""$a"" that exist in variable ""$b""","['echo ""$(comm -12 <(echo ""$a"" | fold -w1 | sort | uniq) <(echo ""$b"" | fold -w1 | sort | uniq) | tr -d \'\\n\')""']",0.009292787189883989,0.3229233768586999,0.04662963880280521
+"Print the contents of ""n""",['cat n'],1.0,1.0,1.4256605770826504e-231
+"Print continuous lines of 100 random characters either ""."" or "" ""","[""cat /dev/urandom | tr -dc '. ' | fold -w 100""]",0.4029752544245289,0.19921250090504072,0.2368644580314316
+"Prints current month calendar, without highlighting of a current date.",['cal -h'],0.20287366424876008,0.11939514264497722,0.24941747177008258
+Print current shell settings,['set -o'],2.7175094755457666e-78,1.3127657569660467e-231,2.7175094755457666e-78
+Print the current working directory without a trailing newline,['echo -n $(pwd)'],0.6220700406786386,2.5603055431633463e-78,0.34185025753461284
+"Print each line in ""file1"" whose first word does not exist as the first word of any line in ""file2""",['join -v 1 <(sort file1) <(sort file2)'],0.2169034866177879,0.7932358832483425,0.814181106580581
+Print each logged in user's username and full name,"['finger -l | grep ""Name:"" | tr -s \' \' | cut -d "" "" -f 2,4- | sort | uniq']",0.18948633604620008,0.4468301945168974,1.24956666616104e-78
+"Print file information of command ""passwd""",['ls -l `which passwd`'],0.4819021845482765,1.0,0.2830956597218095
+Print file system disk space usage of the current directory's file system,['df .'],5.021333847570327e-78,1.4210766955338568e-78,5.021333847570327e-78
+Prints file.txt without the last N bytes,['head -c -N file.txt'],0.2625903890369613,0.7470142947911855,0.8522456714074852
+"Print the first 20 of the most changed "".cs"" files in git",['git log --pretty=format: --name-only | grep .cs$ | sort | uniq -c | sort -rg | head -20'],0.16138618475485564,0.12390969886999532,0.18576734076816642
+Prints the first N bytes of file.txt,['head -c N file.txt'],0.8394327083733336,0.7276817202342092,1.0
+"Print flow of random data, showing all non-printing characters",['cat -v /dev/urandom'],4.634347135356342e-155,4.388630450986681e-155,6.160946493224707e-155
+"Print the full real path of ""/dev/disk/by-uuid/$1"" followed by ""is not mounted""",['echo $(readlink -f /dev/disk/by-uuid/$1) is not mounted'],1.0,0.5561352296036786,0.452548616599351
+Prints git log message with a custom time format string,"['date -d @$(git log -n1 --format=""%at"") +%Y%m%d%H%M']",0.35535004046025775,0.200693978552124,0.391337108957828
+"Print the hexadecimal bytes and printable characters of ""Hello world""",['echo Hello world | od -t x1 -t c'],0.6236244818062909,0.59637528415981,0.41026127581770555
+"Print the last space separated word from ""a b c d e""","['echo ""a b c d e"" | tr \' \' \'\\n\' | tail -1']",0.5274952951221149,0.4639384742776334,0.34200562246098976
+"Prints the length, line number, and contents of the longest line in myfile","['perl -ne \'print length().""  line $.  $_""\' myfile | sort -nr | head -n 1']",0.20380466802449812,0.12455226450725805,0.25323777684752274
+Print lines in file 'filename' that do not match the regex 'pattern',"[""grep -v 'pattern' filename""]",0.727147641547681,0.6815757064066384,1.0
+"Print lines in the sorted contents of ""a.txt"" that are not in the sorted contents of ""b.txt""",['comm -23 <(sort a.txt) <(sort b.txt)'],0.40799035051231586,0.9031990594723792,0.34307762320391294
+Print lines that only unique ones in 'set1' and 'set2' files,['cat <(grep -vxF -f set1 set2) <(grep -vxF -f set2 set1)'],0.16509852064335753,0.1346268538951743,0.16069627474433482
+"Print line, word and byte counts for each .php files in current directory tree and also show the total counts",['wc `find | grep .php$`'],0.063742579112273,0.10334382887199435,0.08897294721358001
+"Print the list of files and directories of the current directory including "".""",['find . \\( -name . -o -prune \\)'],0.19618519651483363,0.19618519651483363,0.19618519651483363
+"Print the list of files in the current directory tree excluding those whose paths contain ""exclude3"" or ""exclude4""","['find . | egrep -v ""(exclude3|exclude4)"" | sort']",0.2782780741480909,0.38831754371891447,0.29637808671525956
+Print local SRV record of domain '_etcd-client._tcp.',"['dig @""127.0.0.1""  _etcd-client._tcp. SRV']",0.29192000339986907,0.4142625804659709,0.5685100997450637
+"Prints long listing of the current directory, sorted from oldest to newest, with appended indicators.",['$ ls -Fltr'],3.021520912734739e-155,0.3174747571129314,0.1702602472176709
+Prints long listing of top ten most memory using processes in a system.,"['ps -e -orss=,args= | sort -nr | head']",0.26960805038319824,0.12849184330457414,0.31299524936264717
+Print the most recently modified file,['ls -1tr * | tail -1'],1.5214359343079012e-78,1.3806441107974892e-78,0.590096156808963
+Print mount point of the file system containing $path.,"['df --output=target ""$path"" | tail -1']",0.12428306437176448,0.2119919696624563,0.17565572404262506
+prints the names of all files in the directory tree rooted in /usr/src whose name ends with ‘.c’ and that are larger than 100 Kilobytes.,"[""find /usr/src -name '*.c' -size +100k -print""]",1.0,0.8027044838702939,1.0
+"Print the names of all files in or below the current directory, with all of the file permission bits S_ISUID, S_ISGID, and S_IWOTH set","['find . -perm -o+w,+s']",0.5540080387705811,0.5540080387705811,0.3902638162928398
+Print name of the file system containing $path.,"['df -h $path | cut -f 1 -d "" "" | tail -1']",0.4023438949131331,0.42128638735495894,0.3513840605696613
+Print the newest *.txt file under current directory with timestamp and path,"['find . -name ""*.txt"" -printf ""%T@ %p\\n"" | sort | tail -1']",0.45710499198053517,0.3732492613476114,0.44143909439984574
+"Print newline, word, and byte counts of each '*.java' file within current directory, and total newline, word, and byte counts","[""find . -name \\*.java | tr '\\n' '\\0' | xargs -0 wc""]",3.9148078052717977e-78,0.10814100440095911,0.2744881630577144
+print number of jobs,['n_jobs=`expr $(jobs | wc -l)`'],0.050087859282305955,0.050087859282305955,0.24252107463564873
+Print only lines from 'file1.txt' that not present in 'file2.txt' and beginning with 'Q',"[""cat file1.txt | grep -Fvf file2.txt | grep '^Q'""]",0.3437456140353941,0.4933356345382991,0.45323832493318394
+"Print only the number of lines in file ""$f""","[""wc -l $f | tr -s ' ' | cut -d ' ' -f 1""]",6.012074810508956e-79,0.055362827687458614,0.055362827687458614
+"Print package information the command ""ldconfig"" belongs to in rpm",['rpm -qfi `which ldconfig`'],0.4721318825957838,0.4498335295544338,0.4498335295544338
+Prints process tree of the current command process.,['pstree -p $$'],0.6186101569833722,1.0,0.4562799427006306
+Prints process tree with command line arguments and process id numbers.,['pstree -apl'],0.5659119256652702,0.7292571723872933,0.800737402916808
+Print second field from semicolon-seprated line $string.,"[""echo $string | cut -d';' -f2""]",0.5832012039914727,0.7202343877500255,0.5391477287240959
+Print sed commands that would replace all occurrences of 'previousword' with 'newword' in all regular files with '.cpp' extension under '/myprojects' directory tree,"[""find /myprojects -type f -name '*.cpp' -print0 |    xargs -0 echo sed -i 's/previousword/newword/g'""]",0.8505635483158457,0.636051589366429,0.6122826269422744
+Print sorted list of all group names known to the system.,['getent group | cut -d: -f1 | sort'],0.16342968483823564,0.2362628876241263,0.18375330691812836
+"Print whether the unique contents of ""set1"" and ""set2"" differ",['diff -q <(sort set1 | uniq) <(sort set2 | uniq)'],0.2103843365659654,0.25120046080813974,0.1332495744491217
+"Print which files differ in ""PATH1/"" and ""PATH2/"" recursively excluding any files that match any pattern in ""file1""",['diff PATH1/ PATH2/ -rq -X file1'],0.6396062531452237,0.5759671759058722,0.6025746108841055
+Process all files matching pattern 'file??' and residing in the xargstest/ directory tree with script `myscript.sh',"[""find xargstest/ -name 'file??' | xargs myscript.sh""]",0.7845322969997631,0.7405949306375588,0.7695819766309795
+"Prompt the user with a question ""This is the question I want to ask?"" and save ""y"" or ""n"" in variable ""REPLY"" in zsh","['read REPLY\\?""This is the question I want to ask?""']",0.8219497732605443,0.7504475521094128,0.5157622117922983
+"Read a line from standard input into variable ""response"" without backslash escapes using the prompt ""About to delete all items from history that match \""$param\"". Are you sure? [y/N] ""","['read -r -p ""About to delete all items from history that match \\""$param\\"". Are you sure? [y/N] "" response']",0.8966817883633416,0.9682479330290165,0.9604752445333795
+"Read a line from standard input into the variable ""yn"" using the first argument as the prompt (""$1 "")","['read -p ""$1 "" yn']",0.42835287319132476,0.6032507670574376,0.4968271843768452
+"Read a line from standard input with prompt ""Are you sure you wish to continue?""","['read -p ""Are you sure you wish to continue?""']",1.0,1.0,1.0
+"Read a single character from standard input into variable ""key"" without backslash escapes and using the prompt ""Press any key to continue...""","['read -n1 -r -p ""Press any key to continue..."" key']",0.8752203769960691,0.9313687360131897,0.9313687360131897
+"Read a single character from standard input into variable ""key"" without backslash escapes, with a timeout of 5 seconds, and with the prompt ""Press any key in the next five seconds...""","[""read -t5 -n1 -r -p 'Press any key in the next five seconds...' key""]",0.8455615077172164,0.10703592685732281,0.7971947335310442
+"Read a single line from standard input and save to variable ""line""",['read line'],0.47750342648354643,0.4459798910708181,0.23464572660152308
+Read all *.txt file paths under /foo into a Bash array ($files),"['IFS=$\'\\n\' read -d \'\' -ra files < <(find /foo -name ""*.txt"")']",0.39885178756336337,0.09695749523361159,0.17380300555909695
+recall the second argument from a previous command by pressing alt-shift-y,"['bind \'""\\eY"": ""\\e2\\e.""\'']",7.640030005906314e-232,5.318731162343385e-232,7.640030005906314e-232
+Receive pattern to search for on the standard input and print only matching part of lines from file 'f.html',['cat f.html | grep -o \\'],0.49454587604647543,0.44932528670420063,0.47027963408204876
+"Recursively add read and execute permissions to all files and folders in ""directory""",['chmod -R +xr directory'],0.5102904728977014,0.3415778749618079,0.3335351129494008
+"Recursively bind ""/sys"" to ""/var/snmp3/sys""",['mount --rbind /sys /var/snmp3/sys'],0.6345874548803054,1.0,0.6609556604342021
+Recursively changes group ownership of everything within a current directory to 'repogroup'.,['chgrp -R repogroup .'],0.737988454296902,0.34506115379602287,0.737988454296902
+Recursively compress every file in the current directory tree and keep the original file,['gzip -kr .'],7.221948193667952e-155,2.5947372063098086e-78,2.5947372063098086e-78
+"Recursively copy directory ""/path/to/data/myappdata"" to ""user@host:/remote/path/to/data/myappdata""",['rsync -rvv /path/to/data/myappdata user@host:/remote/path/to/data/myappdata'],0.845627465582845,0.9660854289024723,0.8619366580855292
+Recursively copies everything under the 'current' folder to the '.hiddendir' folder.,['cp * .hiddendir -R'],0.6826020496219204,0.816496580927726,0.6826020496219204
+"Recursively copy newer files in ""sourcedir/"" to ""user@dest.com:/dest/dir/"" via ssh",['rsync -auv -e ssh --progress sourcedir/ user@dest.com:/dest/dir/'],0.06144321840050021,0.6497433683155326,0.5249385491138053
+"Recursively finds all files with whole word ""pattern"" in a current folder, and precedes found string with its number in file.","['grep -rnw `pwd` -e ""pattern""']",0.4635241428251625,0.304577696074354,0.4492029123095655
+"Recursively move ""./dir"" to ""user@host:/path"" compressing data and displaying progress during transmission",['rsync -rvz --progress --remove-sent-files ./dir user@host:/path'],0.624099335943162,0.6686456862319663,0.3503341121092947
+Redirects time output to file.,['{ time find / 2>/dev/null; } 2>time.txt'],0.09044516957015254,0.08240550473722394,2.958864130998708e-233
+remote copy all text files from one location to another,"[""find .  -name '*.txt' -exec rsync -R {} path/to/dext \\;""]",0.21677427245469066,0.508292885322972,0.2598687758969565
+"Remount ""/"" without writing in ""/etc/mtab""",['mount -n -o remount /'],0.807681595142239,0.640427945703571,0.761827408333416
+"Remount ""/dev/block/mtdblock3"" on ""/system"" with read and write permission","['mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system']",0.7831729052126176,0.9262991059952154,0.7831729052126176
+"Remount ""/home/evgeny"" with the ""suid"" flag set","['sudo mount -i -o remount,suid /home/evgeny']",0.7838860815358907,0.7838860815358907,0.7838860815358907
+"Remount ""/media/Working/"" with a umask of 000","['mount /media/Working/ -oremount,umask=000']",0.5992434837181511,0.6874135741602714,0.531278357196019
+"Remove ""\n"" from ""test1\ntest2\ntest3"" and search for ""test1.*test3""","['echo -e ""test1\\ntest2\\ntest3"" |tr -d \'\\n\' |grep ""test1.*test3""']",0.42675029502515466,0.34988878956944397,0.4725502142224848
+"Remove the ""^M"" characters from all *.ext files under /home directory","['find /home -type f -name ""*.ext"" -exec perl -pi -e \'s/\\r//g\' {} \\;']",0.4921068268072967,0.6947429548883491,0.48360298400391255
+Remove all *.swp files under current directory ensuring white space safety,"['find . -name ""*.swp"" -print0|xargs -0 rm']",0.8931440071693292,0.8931440071693292,0.8931440071693292
+Remove all *~ files under dir,['find dir -name \\*~ | xargs echo rm | ksh -s'],0.32440449300310803,0.4448607065100078,0.4448607065100078
+Remove all .txt files with spaces in names in and below the current directory,"['find -name ""*\\ *.txt"" | xargs rm']",0.41385470263393187,0.5215478053798762,0.6198549813336537
+remove all the core files from /usr folder which have not been accessed in the last 7*24 hours,"['find /usr -name core -atime +7 -exec rm ""{}"" \\;']",0.600995723605088,0.7857982572173272,0.6712089421435641
+"Remove all files from the current directory tree whose names do not match regular expression ""excluded files criteria""","['find . | grep -v ""excluded files criteria"" | xargs rm']",0.6162334061599511,0.197782722221485,0.4565878395500315
+Remove all files under current directory,"[""find -exec rm '{}' +""]",0.48495173844649814,0.48495173844649814,0.48495173844649814
+"Remove all files whose names begin with ""no-such-thing"" in the /home/peter directory tree",['find /home/peter -name no-such-thing* |xargs rm'],0.7045237227542804,0.7134885382278087,0.6815725938367149
+Remove all regular files from the current directory tree that were modified between August 10th and August 17th,"['find . -type f -newermt ""Aug 10"" ! -newermt ""Aug 17"" -exec rm {} \\;']",0.4022486104975483,0.29988360790604024,0.30719972642714843
+Remove all regular non-hidden files modified more than 7 days ago and residing in the /tmp directory tree,"[""find /tmp -type f -name '*' -mtime +7 -print0 | xargs -0 rm -f""]",0.6024885002385892,0.496832956603665,0.6241456825187371
+Remove all spaces from standard input,"[""tr -d ' '""]",0.5969491792019646,0.5969491792019646,0.5969491792019646
+Removes all top-level empty folders within the current folder.,['ls | xargs rmdir'],0.11085434134712652,0.2905857294915733,0.10836164033218013
+"Remove characters in columns 34 through 39 in the output of ""finger""",['finger | colrm 34 39'],0.22533753160530579,0.1329202734911178,0.21158827697516275
+Removes everything from current folder but '*ddl*' and '*docs*' files.,['ls -1|grep -v -e ddl -e docs| xargs rm -rf'],0.15459881918456164,0.07451457995471392,0.2965703269029343
+"Rename ""file.txt"" in directories ""v_1"", ""v_2"", and ""v_3"" each to ""v_1.txt"", ""v_2.txt"", and ""v_3.txt"" respectively and print the conversion","[""rename -v 's#/file##' v_{1,2,3}/file.txt""]",0.27150544557821943,0.24884533762040226,0.09502963504749448
+"Rename ""file001abc.txt"" to ""abc1.txt""",['mv file001abc.txt abc1.txt'],1.0,1.0,1.0
+Renames all *.html files in a current directory to *.txt files.,"[""ls *.html | xargs -I {} sh -c 'mv $1 `basename $1 .html`.txt' - {}""]",0.40841861378425753,0.3804439092795404,0.4349992716214154
+Rename all *.jpg files under current directory by appending parent directory name at the beginning of their names if the name doesn't already contain the parent directory name,"['find . -name \'*.jpg\' -execdir bash -c \'d=""${PWD##*/}""; [[ ""$1"" != ""$d-""* ]] && mv ""$1"" ""./$d-$1""\' - \'{}\' \\;']",0.27084483441322943,0.10644329514208532,0.17105233442652756
+Rename all regular files under current directory tree with inode number 31467125 to 'new_name.html',['find . -type f -inum 31467125 -exec mv {} new_name.html \\;'],0.7289653552706339,1.0,0.636497847135314
+rename all the text files  in the current folder to html files,"['find -name ""*.txt"" -exec mv {} `basename {} .htm`.html \\;']",0.528603634011264,0.4430928645516688,0.4976838304723875
+"Reports count of characters in the value of ${FOO_NO_WHITESPACE} variable as follows: ""length(FOO_NO_WHITESPACE)==<counted number of characters>""","['echo -e ""length(FOO_NO_WHITESPACE)==$(echo -ne ""${FOO_NO_WHITESPACE}"" | wc -m)""']",0.45897655514109353,0.43260534325824473,0.7266555890333114
+Report file system containing the current directory disk usage,['df .'],5.021333847570327e-78,2.5106669237851586e-78,1.8195420571196091e-78
+Report file system containing path to /dir/inner_dir/ disk usage in kilobytes.,['df -k /dir/inner_dir/'],1.0,1.0,0.951229424500714
+"Reports time consumed by command 'sleep 1' to the file time.txt together, and saves command error output to sleep.stderr.",['{ time sleep 1 2> sleep.stderr ; } 2> time.txt'],0.41666323307208153,0.5857391541372338,0.4206120961420682
+Reports time consumed by command 'sleep 1' to the file time.txt together with command error output.,['{ time sleep 1 ; } 2> time.txt'],0.6099084961389527,0.352922081789046,0.2625805454451497
+"Request that the master ssh connection ""otherHosttunnel"" exits",['ssh -O exit otherHosttunnel'],1.0,1.0,0.9046861111425067
+Return the depth of the current directory tree,"[""find . -type d -printf '%d:%p\\n' | sort -n | tail -1""]",0.03082033596929654,1.7610111537229562e-157,1.7610111537229562e-157
+return every file that does not have bar somewhere in its full pathname,"[""find . ! -path '*bar*' -print""]",0.24721090820433894,0.4461287756403094,0.20303479872521724
+reverse both words and lines in file,"['tac filename | perl -lane \'print join("" "", reverse(@F))\'']",2.595973536301525e-85,0.0017139122949000254,0.0017139122949000254
+Reversibly sorts content of the '${TMP}/${SCRIPT_NAME}.name' file,['cat ${TMP}/${SCRIPT_NAME}.name|sort -r;'],0.7417762059533541,0.7655533087596337,0.7694398081293018
+"Run ""./configure"" with a new environment variable CC set to the full path of the command 'cc'",['CC=$(which cc) ./configure'],0.7445373275754832,0.7445373275754832,0.7445373275754832
+Runs 'mpv' command for each *.mpv and *.flv file in a current folder.,"['mpv --no-audio \\`ls ~/Down/other/*.{mp4,flv} --color=never\\`']",0.09881878750309983,0.07852432906881268,0.1674242988986528
+Run 'otherscript.sh' script with all environment variables specified in the file 'xxxx',['env `cat xxxx` otherscript.sh'],0.5618496148998703,0.1846139865931024,0.07273448658243789
+"run command ""sh runProgram.sh"" as user jetty",['su - jetty -c sh runProgram.sh'],0.8827916928185874,0.8827916928185874,0.8827916928185874
+Run mycommand in /tmp without changing the current shell's working directory,['( cd /tmp; mycommand )'],0.18732951873728507,0.5603848212611383,0.6350869045864345
+"Run the node expression ""JSON.parse(process.argv[1]).foo"" on the contents of ""foobar.json""","['node -pe \'JSON.parse(process.argv[1]).foo\' ""$(cat foobar.json)""']",0.7551818208609444,0.7694196026321604,0.8390256370612698
+"same as above example with -exec , in this example with -OK it should ask for confirmation before executing the rm command . that is called user intractive command",['find . -name core -ok rm {} \\;'],0.05846570268596545,1.220592587729956e-78,2.302799811519088e-78
+"Save the contents of ""~/.bashrc"" to the clipboard on OSX",['cat ~/.bashrc | pbcopy'],0.1732283475363899,0.2645953895393109,0.4577864251714191
+"Save the current time formatted according to the format string ""%Y-%m-%d %H:%M:%S"" to the variable 'CDATE'","['CDATE=$(date ""+%Y-%m-%d %H:%M:%S"")']",0.3204848174291866,0.7645630089166471,0.8431339019329497
+"Save the first three octets of the host name's IP address to variable ""subnet""","['subnet=$(hostname -i | cut -d. -f1,2,3)']",0.2656149714316668,0.21819235281892807,0.04687467930047242
+"Save full path of command ""rm"" to variable ""RM""",['RM=`which rm`'],1.0,0.08893868599300617,1.0
+"Save full path of command ""tr"" to variable ""TR""",['TR=`which tr`'],0.6198021310128995,0.6162607099729586,1.0
+"Save the full path of command ""~/f"" to variable ""foo""",['foo=`which ~/f`'],0.26104909033290696,0.2227227312202058,0.6739047062564734
+"Save the greater version number of ""$1"" and ""$2"" into variable ""ver""","['ver=`echo -ne ""$1\\n$2"" |sort -Vr |head -n1`']",0.19745798575361784,0.05078384577581542,0.09330838562651195
+"Save the list of files in the current directory tree whose names contain ""2011"" to /tmp/allfiles","[""find . -name '*2011*' -print0 > /tmp/allfiles""]",0.4663791944268154,0.7877147430338182,0.8218628801542417
+Save the list of files modified within a fortnight ago to `deploy.txt' stripping the file names of any leading directories,"[""find . -type f -mtime -14 -printf '%f\\n' > deploy.txt""]",0.6115520655713608,0.6021398179856673,0.45302813551275367
+"Save long listing of all running processes in the 'log' file, and save number of process strings that contain 'cntps' in the 'cnt' variable.","['cnt=`ps -ef| tee log | grep ""cntps""|grep -v ""grep"" | wc -l`']",0.09235542461706908,0.3909803969030297,0.30359025131822415
+"Save the number of matching executables for ""$cmd"" in $PATH to variable ""candidates""",['candidates=$(which -a $cmd | wc -l)'],0.8159485794662632,0.42675634768225806,0.5774298155649045
+Save number of strings with $expression pattern in 'foo.txt' to 'big_lines' variable.,"['big_lines=`cat foo.txt | grep -c ""$expression""`']",0.45789970067662294,0.8108494749177433,0.6329976485393662
+"Save the physical current working directory to variable ""END_ABS""",['END_ABS=`pwd -P`'],0.5342227899599141,0.6964705665515707,0.6964705665515707
+"Save the short system host name to variable ""hostname""",['hostname=`hostname -s`'],0.3190421638559785,0.6771164277807228,0.6771164277807228
+"Search ""input.txt"" for regex patterns only matching those listed in ""ignore.txt"", list the unique lines and prefix with the number of occurrences",['grep -of ignore.txt input.txt | sort | uniq -c'],0.5452487090395023,0.4952682530036895,0.3908919194315421
+"Search the /Path directory tree for files matching pattern ""file_name*""","['find /Path -name ""file_name*""']",1.0,1.0,1.0
+"Search the /Path directory tree for files whose pathnames match ""/Path/bar*"" or ""/Path/foo*"" and whose names match pattern ""file_name*""","['find /Path \\( -path ""/Path/bar*"" -o -path ""/Path/foo* \\) -name ""file_name*""']",0.5341613377795694,0.5934195232769911,0.8260984678666234
+Search the /media/shared directory recursively for MP3 and OGG files,"['find /media/shared \\( -iname ""*.mp3"" -o -iname ""*.ogg"" \\)']",0.806235014833426,0.861804195732004,0.7167671937854883
+"Search the /tmp/ directory recursively for files matching regular expression "".*file[0-9]+$""","['find /tmp -regex "".*file[0-9]+$""']",1.0,0.5698345996877183,1.0
+Search /usr/local recursively for directories whose names end with a number 0-9,"[""find /usr/local -type d -name '*[0-9]'""]",0.7921325184223763,1.0,0.5776616445305364
+"Search all .c files from the current directory tree for ""keyword"", ignoring the case","['find . -name ""*.c"" -exec grep -i ""keyword"" {} "";""']",0.6379033235773229,0.7997746389034827,0.5082360199291509
+"Search all files in the current directory tree for ""SearchString"", ignoring .html files and skipping .svn directories","[""find . \\( -name '*.svn*' -prune  -o ! -name '*.html' \\) | xargs -d '\\n' grep -Hd skip 'SearchString'""]",0.12593385554829056,0.23963430141437309,0.32848346565129943
+Searches available packages by word 'zsh'.,['yum search zsh'],1.0,2.876505889829297e-78,1.0
+Searches available packages with 'mysql' and 'client' in name.,['yum search mysql | grep client'],0.49902817810808653,0.7097194725951897,0.37873977709349077
+Search the current directory and all of its sub-directory for any PDF files being careful to prevent the shell from expanding anything in '*.pdf'  before it'ss passed to find.,"[""find . -name '*.pdf' -print""]",0.2384816208263118,0.3477081601181082,0.3041285049058554
+"Search the current directory for files whose names start with ""messages."" ignoring SVN and CVS files","['find \\( -name \'messages.*\' ! -path ""*/.svn/*"" ! -path ""*/CVS/*"" \\) -exec grep -Iw uint {} +']",0.3205666259406173,0.4387985636019398,0.2223132453096806
+"Search the current directory recursively for files containing ""string""","[""find . -type f -exec grep -l 'string' {} \\;""]",0.5708967538786285,0.47228016467144257,0.2982152949425514
+Search the current directory recursively for MOV files,['find . -iname *.mov'],0.7076534431960262,0.5283871461162214,0.16921800053009275
+Search the current directory recursively for regular files last accessed less than 2 minutes ago,['find . type -f -amin -2'],0.7679634266158699,1.0,1.0
+Search the current directory recursively for regular files last modified more than 2 days ago,['find . type -f -mtime +2'],1.0,1.0,1.0
+Search the current directory tree for .aux files,"['find . -name "".aux""']",0.8578928092681435,0.8578928092681435,0.7483293841345244
+Search the current directory tree for .rb files ignoring .vendor directories,"[""find . -name .vendor -prune -o -name '*.rb' -print""]",0.309015982622121,0.3494898261451749,0.39899414482035694
+"Search the current directory tree for files and directories called ""test""",['find . -name test -print'],0.6081802046388685,1.0,0.6624801353939261
+"Search the current directory tree for files containing ""needle"" in their names","['find . -iname ""*needle*""']",0.2947695497083745,0.8862476419965991,0.7202093506938777
+Search the dir_data directory and all of its sub-directories for regular files and remove the execute permission for all while adding the write permission for the user.,"['find ~/dir_data -type f  -exec chmod a-x,u+w {} \\;']",0.7479049518684233,0.6486729300846427,0.6926183904875227
+Search directory /path/to/check/ for regular files,['find /path/to/check/* -maxdepth 0 -type f'],0.6259373127688174,0.6539336920983221,0.5584713570986775
+Search directory trees /usr/local/man and /opt/local/man for files whose names begin with 'my',"[""find /usr/local/man /opt/local/man -name 'my*'""]",0.9207827204114086,0.9207827204114086,0.9207827204114086
+"Search for ""pattern"" in ""file"" and join each line by a space","[""cat file | grep pattern | paste -sd' '""]",0.36390968609340657,0.1954499348168132,0.504291554313344
+Search for 'Processed Files' in all dl-aster-full-20131102* (case insensitive) files under current directory and print only the 2nd field from the output with : (colon) as the delimiter,"['( find . -iname ""dl-aster-full-20131102*"" -exec grep ""Processed Files"" {} \\;) | cut -d"":"" -f2']",0.6221351893293444,0.6765021583868861,0.6302459772104316
+"Search for 'foo' in all the java files under 'dir1', 'dir2' and 'dir3' directory tree and print only the names of the matched files","['find dir1 dir2 dir3 -type f -name ""*.java"" -exec grep -il \'foo\' {} \\;']",0.6909538352991865,0.7377069710900728,0.6248596593421889
+Search for 'js' in all files under current directory that match 'some string' in their names,"[""find . | grep 'some string' | grep js""]",0.522006057986088,0.4014126329706982,0.47342876512337945
+Search for 'keyword' in all javascript files under current directory tree excluding all paths that includes the directory 'node_modules',"['find ./ -not -path ""*/node_modules/*"" -name ""*.js"" | xargs grep keyword']",0.7366042450003124,0.6842450044579499,0.5655363403290442
+Search for 'sometext' in all the files with '.txt' extension under current directory tree and also print the filenames,"[""find . -name '*.txt' -exec grep 'sometext' '{}' \\; -print""]",0.6636314758565294,0.7454652653654302,0.5347879606843268
+Search for 'specific string' in all files matching the name pattern '“*.[txt|TXT]”' under current directory tree,['find . -name “*.[txt|TXT]” -print | xargs grep “specific string”'],0.9077321594028206,0.7157845613716322,0.7157845613716322
+Search for *pattern* in and below current directory,"['find -name ""*pattern*""']",0.30027814350488985,0.8746128647956632,0.8746128647956632
+search for a word in all the fies in the current folder,['find . -type f -exec grep some_string {} \\;'],0.5766342127363127,0.7076741335887552,0.23337979128711284
+search for all empty directories in the folder /home,['find /home -type d -empty'],1.0,0.4620295702946896,1.0
+search for all the files in the current folder and sort them in the order of their depth and display the file names,"[""find -type d -printf '%d\\t%P\\n' | sort -r -nk1 | cut -f2-""]",0.3120590116327299,0.37216914741498247,0.22907256444655824
+"search for all the files in current folder which start with ""file2015-0"" and move them to frst 400 fiiles  to another folder","['find . -name ""file2015-0*"" | head -400 | xargs -I filename mv  filename']",0.05739132852575059,0.04675557370031596,0.4634894815059345
+"search for all the files in the current folder which have the word ""-GHBAG-"" and display the move command for replacing the word ""GHBAG"" in the file names to ""stream-agg""","[""find . -name '*-GHBAG-*' -exec bash -c 'echo mv $0 ${0/GHBAG/stream-agg}' {} \\;""]",0.3417586422589548,0.34321001537915596,0.3225142133665988
+"search for all the files in the entire file system which have either suid or sgid bit enabled and find of diff of these files with the file ""files.secure"".",['find / \\( -perm 2000 -o -perm 4000 \\) -print | diff - files.secure'],0.10133527569208223,0.16924696017522012,0.15832372034760941
+search for all the files in the folder /data/images which have been modified after /tmp/start and before /tmp/end,['find /data/images -type f -newer /tmp/start -not -newer /tmp/end'],0.8871298670753632,0.8440137864963949,0.8627595984958738
+search for all the files in the folder /data/images which have been modified after /tmp/start and before /tmp/end and save the output list to output.txt,['find /data/images -type f -newer /tmp/start -not -newer /tmp/end > output.txt'],0.8377643983891541,0.8871343016597671,0.8069639327432399
+search for all the mp3 files in the current folder and change the character encoding of them to  EUR-KR (Korean characters),"['$ find . -name ""*mp3"" -print0 | xargs -0 mid3iconv -e EUR-KR -d']",0.20425383677386644,0.3075912106079952,0.23226950167558125
+search for all png files in a folder and copy them to another folder,"['find /home/mine -iname ""*.png"" -exec sh -c \'cp $0 /home/mine/pngcoppies/copy/$0\' {} \\;']",0.42978205617424053,0.2511739542345294,0.31012944983917085
+search for all Scala files under the current directory that contain the string null,"['find . -type f -name ""*.scala"" -exec grep -B5 -A10 \'null\' {} \\;']",0.6303181218104077,0.6377163532227323,0.7595415563555872
+Search for the case insensitive pattern 'PATTERN' in all files under current directory tree and display the matched files,"['find . -print | xargs grep -l -i ""PATTERN""']",0.4754274833227206,0.45671523521522056,0.5251658675506057
+"search for the directory ""mysql"" in the entire file system",['find / -name mysql -type d'],0.7740645990992171,1.0,0.5875210883251932
+Search for file 'secret.keys' redirecting error messages to /dev/null,"[""find / -name 'secret.keys' -print 2>/dev/null""]",0.7548555536809988,0.6470917510734246,0.7548555536809988
+Search for files/directories with the case insensitive pattern anaconda.* in /var/log directory and create an archive (file.tar) of the last file found,['find /var/log/ -iname anaconda.* -exec tar -cvf file.tar {} \\;'],0.9418470966916245,0.6356572871654746,0.6356572871654746
+"Search for files greater than 20MB in the entire file system, display the path and file size and discard error reporting of the find command","['find / -type f -size +20M -exec ls -lh {} \\; 2> /dev/null | awk \'{ print $NF "": "" $5 }\'']",0.1916442458751782,0.14391424610463072,0.12195188026965838
+search for files starting with memo and which belong to the user ann in the folder /work,"[""find /work -name 'memo*' -user ann -print""]",0.7101832490200471,0.7131106524904596,0.8547453697044487
+Search for the regex '^ERROR' in all *.log files under current directory,"['find . -name ""*.log"" -exec egrep -l \'^ERROR\' {} \\;']",0.8086446784949392,0.8086446784949392,0.5643034958721282
+"search for the regular/normal file ""Dateiname"" in the entire file system","['find / -type f -iname ""Dateiname""']",0.638599261236561,0.7160237768649607,0.638599261236561
+"search for the word ""methodNameHere"" in all the python files in the folder ""/mycool/project/"" and display color on the matched lines in the output","['find /mycool/project/ -type f -name ""*.py"" -print0 | xargs -I {} -0 grep -H --color ""methodNameHere"" ""{}""']",0.6122542792839516,0.5697922443853115,0.5663019144462522
+"search for the word ""slrn"" in all the files in the folder $HOME/html/andrews-corner","[""find $HOME/html/andrews-corner -exec grep -q 'slrn' '{}' \\; -print""]",0.625843786036966,0.6758998227822757,0.7426480397273614
+search  in root ( / ) directory downwards all files which  have exactly 2 links.,['find /  -links 2 -print'],0.9175169016290816,0.5494022557700251,0.5494022557700251
+"Search the regular files of the current directory tree for string ""stuff""","['find . -type f -exec grep -n ""stuff"" {} \\; -print']",0.4940292986249645,0.4729858996337644,0.424948270719505
+search through only the /usr and /home directories for any file named Chapter1.txt,['find /usr /home -name Chapter1.txt -type f'],0.7903383629814982,0.7903383629814982,0.7903383629814982
+"(GNU specific: top) Send e-mail to ""your_email@domain.com"" with subject ""any subject"" containing process statistics output by the GNU version of 'top'.","['top -b -n 1 | mail -s ""any subject"" your_email@domain.com']",0.9061100081150306,0.8354750463907887,0.6706595157421591
+"send GET request to ""http://testsite/api/"" with header ""Authorization: Token wef4fwef54te4t5teerdfgghrtgdg53"" and format as json","['curl -X GET -H ""Authorization: Token wef4fwef54te4t5teerdfgghrtgdg53"" http://testsite/api/ | python -mjson.tool']",0.6409665543887795,0.7704476644792662,0.78729953364838
+"Send SIGHUP (hangup) signal to nginx master process, causing it to re-read its configuration and restart child processes if necessary.",['kill -HUP $( cat /var/run/nginx.pid )'],0.27726692567051153,0.30011695215478246,0.33563252421019807
+"Send SIGTERM signal to all python processes running script ""csp_build.py""","[""kill $(pgrep 'python csp_build.py')""]",0.11763996520261387,0.4348320835140377,0.14778067718345736
+"set alias ""devn"" for command ""cat > /dev/null""","[""alias devn='cat > /dev/null'""]",1.0,1.0,1.0
+"set alias ""go"" for command 'GOPATH=$(infer-gopath.sh) go'","[""alias go='GOPATH=$(infer-gopath.sh) go'""]",1.0,1.0,1.0
+"set alias ""my_command"" for command ""$oldalias --fail-if-command-contains=$bad_string""","['alias my_command=""$oldalias --fail-if-command-contains=$bad_string""']",0.9460866645260309,0.9460866645260309,1.0
+"set alias ""prettify_json"" for command ""php -E '$o = json_decode($argn); print json_encode($o, JSON_PRETTY_PRINT);'""","[""alias prettify_json=php -E '$o = json_decode($argn); print json_encode($o, JSON_PRETTY_PRINT);'""]",0.9631321533466505,0.9733254474339004,0.9733254474339004
+"set alias ""pwd"" for command ""echo -n `pwd` | pbcopy""","[""alias pwd='echo -n `pwd` | pbcopy'""]",1.0,1.0,1.0
+"set alias ""unix"" for command 'echo $(date +%s)'","[""alias unix='echo $(date +%s)'""]",1.0,1.0,1.0
+Set IFS variable to empty before reading a line of standard input without backslash escape characters,['IFS= read -r line'],0.4228047675456572,0.1297464032679993,0.1297464032679993
+Set permissions for directories in `foldername' and its subdirectories to 755,"['find foldername -type d -exec chmod 755 {} "";""']",0.9384037425899336,0.9330634347076788,0.9330634347076788
+"Set permissions of all directories under ""/opt/lampp/htdocs"" to 755",['find /opt/lampp/htdocs -type d -exec chmod 755 {} \\;'],1.0,0.8020082603686746,0.6890550637934566
+"Set permissions of command ""node"" to 755",['sudo chmod 755 $(which node)'],0.593200269657988,0.8278527840665445,0.626739817960006
+Set the timestamp of B to the same one as A,['touch -r A B'],6.787002659677382e-155,6.887578243315168e-155,0.43085136022539017
+"Set timestamp of B to the timestamp in stat format specified by variable ""old_time""","['touch -d""$(date --date=""@$old_time"")"" B']",0.20151530985920016,0.38364625463393826,0.32103017472637824
+Set variable 'path' to name of current directory (without the containing directories) converted to lowercase.,"[""path=$(basename $(pwd) | tr 'A-Z' 'a-z' )""]",0.15306423241144798,0.10554641593850621,0.023668039100710702
+"show all .cpp, .c, .h, .hpp files in the folder ~/src","[""find ~/src -type f \\( -iname '*.cpp' -or -iname '*.h' -or -iname '*.c' -or -iname '*.hpp' \\) -exec echo {} \\;""]",0.3222549282920771,0.08561907553201978,0.3222549282920771
+show all the files in the folder /etc which have been modified in the last 24 hours,['find /etc -mtime -1'],1.0,1.0,1.0
+"Show all variables whose name or value contains ""PATH"", sorted in reverse alphabetical order.",['env | uniq | sort -r | grep PATH'],0.4921758091281616,0.45982802432574005,0.7046643303594559
+Show the epoch in default date/time format,['date -ud@0'],0.13191601177632875,0.11649284259158209,0.14868720326332424
+Show global windows options.,['tmux show-options -g'],3.674407732042787e-79,8.907060233257946e-79,4.006957178545495e-155
+"Show the value of variable ""list"", discarding consecutive duplicates and adding number of occurrences at the beginning of each line.","['echo ""$list"" | uniq -c']",0.4478860307233996,0.01240917839292791,0.3119777449412711
+"Sort ""some_data"" by the first and second "";"" delimited entries, outputing unique lines and stabilizing the sort","[""sort -k1,1 -k2,2 -t';' --stable --unique some_data""]",0.5567041412429727,0.2692699466184386,0.2294061050309561
+Sort and display the file name and creation month of top 11 files in the entire file system (Sort in the order of month ),"['find / -type f -printf ""\\n%Ab %p"" | head -n 11 | sort -k1M']",0.7752063395985008,0.7108565669554701,0.49502551009494666
+"Sort lines in ""FILE"" to standard output preserving only unique lines",['sort -u FILE'],0.7098108717509044,0.7098108717509044,1.0
+"Split ""$SOURCE_FILE"" into files of at most 100 lines each","['split -l 100 ""$SOURCE_FILE""']",0.2054922255373401,0.732877924381707,0.8606789566781284
+"Split ""<file_name>"" into files of at most 1024 KiB in size",['split -b 1024k <file_name>'],0.8940387317591186,1.0,1.0
+"Split ""data.tsv"" into files of at most 5000000 lines each with prefix ""_tmp""","[""split -l5000000 data.tsv '_tmp';""]",0.7972032616648247,0.5712530643438758,0.5165750500275562
+"split compressed content of the file www into pieces per 1073741824 bytes named as ""backup.tar.NNN""",['tar czf - www|split -b 1073741824 - www-backup.tar.'],0.3739866781186111,0.4602970551305719,0.4308884893307053
+Split standard input into files with at most 75 lines each,['split --lines=75'],0.42554169350191207,0.42554169350191207,0.42554169350191207
+"Strips last section from the path $pathname, and prints basename of the rest part.",['echo $(basename $(dirname $pathname))'],0.2770682345136029,0.3479990407922553,0.3479990407922553
+Test if files named 'something' were found in YOUR_DIR,"['[[ ! -z `find \'YOUR_DIR/\' -name \'something\'` ]] && echo ""found"" || echo ""not found""']",0.08903555869061873,0.19591989050266412,0.19591989050266412
+"Uncompress file ""dbdump.sql.gz"" through standard input and pass to ""mysql""",['cat dbdump.sql.gz | gzip -cd | mysql'],0.7249297673305527,0.45926876630206176,0.41249768374833595
+Unset the DISPLAY variable,['unset DISPLAY'],0.7825422900366437,1.0,1.0
+"Unzip ""file.gz"" to standard output and execute in bash with arguments ""-n wordpress""","['gzip -d --stdout file.gz | bash -s -- ""-n wordpress localhost""']",0.49267977512329225,0.33494985714651515,0.282698632830089
+"Unzip and merge all ""small-*.gz"" files into files of 2000000 lines",['zcat small-*.gz | split -d -l2000000 -a 3 - large_'],0.6169038324820503,0.1798025414910452,0.6972565399804362
+"Ungzip and untar all files matching ""www-backup.tar.*""",['cat www-backup.tar.*|gunzip -c |tar xvf -'],0.390789472819912,0.2461529836292303,0.26793410597543016
+"Use metaflac to extract the artist field from myfile.flac, and set the variable ARTIST to the value of that field.",['source <(metaflac --show-tag ARTIST myfile.flac)'],0.5198717643603832,0.3730491738834585,0.2590203027906082
+"Use the PHP interpreter to output an endless stream of ""a"" characters to ""nohup.out"" in the current directory, or in the home directory if that is not possible. The PHP process will not receive or respond to SIGHUP (signal 1) which are sent to it.","['nohup php -r \'while (true) { echo ""a"";}\' &']",0.28546104205645934,0.24095687684608735,0.444027309210562
+Verbosely compresses all files on fourth and fifth depth level keeping original files in place.,['bzip2 -kv */*/*/*/*'],2.8314851544960777e-155,0.9459594689067654,0.03890050116754068
+Verbosely compresses all files on sixth and seventh depth level keeping original files in place.,['bzip2 -kv */*/*/*/*/*/*'],0.36709073542822435,0.3359109812391624,0.02263412066032044
+"wait for a change in ""target-directory"" before returning",['inotifywait -e attrib target-directory'],3.799627939990028e-156,0.3768478744790068,0.14483029488744173
+"Write ""127.0.0.1 ad.doubleclick.net"" to the console and append to ""/etc/hosts"" as root",['echo 127.0.0.1 ad.doubleclick.net | sudo tee -a /etc/hosts'],0.5527485275577902,0.7489642172886272,0.8778917187813654
+"Write ""\n/usr/local/boost_1_54_0/stage/lib"" to standard output and append to ""/etc/ld.so.conf""","['echo -e ""\\n/usr/local/boost_1_54_0/stage/lib"" | sudo tee -a /etc/ld.so.conf']",0.8049349260739581,0.8489897016326661,0.26318812103718786
+"Write output of ""command"" to standard output and append to ""/path/to/logfile""",['command | tee -a /path/to/logfile'],0.6879045937009651,0.8795611656155118,0.8795611656155118
