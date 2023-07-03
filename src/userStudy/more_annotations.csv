@@ -1,0 +1,11 @@
+name,understood,misunderstood,correct_nl_generation,incorrect_nl_generation,elicitation,failed_elicitation,explanation,bad_explanation
+A,26,0,8,0,0,2,0,0
+B,13,2,9,0,0,1,0,0
+C,24,1,19,0,0,2,2,0
+D,19,2,7,0,0,1,0,0
+E,26,0,0,0,0,2,0,0
+F,8,0,1,0,0,1,2,0
+G,23,1,2,0,0,2,0,0
+H,12,0,0,0,0,1,0,0
+I,21,0,7,0,7,2,0,0
+J,23,2,0,0,0,1,0,0
