@@ -17,7 +17,16 @@
 ### Usage
 * `roger [Natural Language Pompt]`
 
-## Finetune
+## `src/agent`
+`roger`'s implementation lives here, you can edit the setup and fewshot promptsin `utils.py`.
+Feel free to change `model="gpt-3.5-turbo"` to `model="gpt-4"` in `roger.py` to use GPT-4.
 
-## User Study
+## `src/finetune`
+The NL2Bash (Lin et al. 2018) dataset is used to fine-tune various GPT-3 models here. Data preparation, fine-tuning, and shell scripts to get predictions from the fine-tuned models can also be found here.
 
+## `src/meta`
+Contains an inference cost estimation script.
+
+## `src/userStudy`
+This directory contains the user study material. There are also scripts to annotate the experiments.
+The `dockerStuff` directory was used to set up a container for participants to use in the second task of the user study.
